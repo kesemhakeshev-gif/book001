@@ -3,280 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קסם וקשב - ספר ילדים</title>
+    <title>קסם וקשב - משה מדינה</title>
+    <!-- טעינת פונט מודרני -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2b6cb0;
-            --secondary-color: #ebf8ff;
-            --text-color: #2d3748;
-            --accent-color: #ed8936;
+            --primary: #4F46E5; /* כחול-סגול מודרני ודינמי */
+            --primary-hover: #4338CA;
+            --secondary: #F3F4F6;
+            --text-dark: #1F2937;
+            --text-light: #4B5563;
+            --accent: #F59E0B; /* כתום-צהוב לקסם ולכפתורים */
+            --accent-hover: #D97706;
+            --bg-color: #F9FAFB;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f7fafc;
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding-bottom: 80px; /* מקום לכפתור הצף */
+        }
+
+        /* עיצוב כללי למיכל האתר */
         .container {
-            max-width: 700px;
-            margin: 40px auto;
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* כרטיסיות מודרניות */
+        .card {
             background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #F3F4F6;
         }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
-        
+
+        .card-highlight {
+            border-top: 5px solid var(--accent);
+        }
+
+        /* כותרות */
         h1 {
-            color: var(--primary-color);
-            font-size: 2.5em;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-top: 20px;
             margin-bottom: 10px;
         }
-        
-        h2 {
-            color: var(--primary-color);
-            font-size: 1.6em;
-            margin-top: 40px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.2em;
-        }
-        
+
         .subtitle {
-            font-size: 1.3em;
-            color: #4a5568;
-            font-weight: 600;
-            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 30px;
         }
-        
-        .cta-button {
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* הדגשות טקסט פואטיות */
+        .poetic-text {
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--primary);
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .poetic-text::before, .poetic-text::after {
+            content: "✨";
+            display: block;
+            font-size: 1.5rem;
+            margin: 10px auto;
+            opacity: 0.5;
+        }
+
+        /* כפתורים מודרניים */
+        .btn {
             display: block;
             width: 100%;
-            max-width: 320px;
+            max-width: 350px;
             margin: 30px auto;
-            padding: 18px;
-            background-color: var(--accent-color);
-            color: #ffffff;
+            padding: 18px 24px;
+            background-color: var(--accent);
+            color: #fff;
             text-align: center;
             text-decoration: none;
-            font-size: 1.3em;
+            font-size: 1.4rem;
+            font-weight: 700;
             border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(237, 137, 54, 0.3);
-            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
-        
-        .cta-button:hover {
-            background-color: #dd6b20;
-            transform: translateY(-2px);
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px -5px rgba(245, 158, 11, 0.5);
         }
-        
-        .poetic-text {
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin: 25px 0;
+
+        /* אזור מחיר */
+        .price-area {
             text-align: center;
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin-top: 20px;
         }
-        
-        .testimonial-box {
-            background-color: var(--secondary-color);
-            border-right: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 4px 0 0 4px;
-            font-style: italic;
+
+        .old-price {
+            text-decoration: line-through;
+            color: #9CA3AF;
+            font-size: 1.2rem;
+            display: block;
         }
-        
-        ul {
-            padding-right: 20px;
-        }
-        
-        li {
+
+        .new-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+            line-height: 1.2;
             margin-bottom: 10px;
         }
-        
-        .faq-q {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 25px;
-            font-size: 1.1em;
-        }
-        
-        .faq-a {
-            margin-bottom: 20px;
-        }
-        
-        .center-text {
-            text-align: center;
-        }
-        
-        .price-box {
-            text-align: center;
-            background-color: #f7fafc;
-            border: 2px dashed #cbd5e0;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-        }
-        
-        .original-price {
-            text-decoration: line-through;
-            color: #a0aec0;
-            font-size: 1.2em;
-            display: block;
-            margin-bottom: -5px;
+
+        /* ציטוטים והמלצות */
+        .quote {
+            background-color: var(--secondary);
+            border-right: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px 0 0 8px;
+            font-style: italic;
         }
 
-        .price {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: var(--primary-color);
-            display: block;
-            margin: 10px 0;
+        /* שאלות נפוצות - אקורדיון אינטראקטיבי */
+        .faq-item {
+            border-bottom: 1px solid #E5E7EB;
+            padding: 15px 0;
+            cursor: pointer;
         }
 
-        /* מותאם למובייל */
-        @media (max-width: 600px) {
-            .container { margin: 0; border-radius: 0; padding: 20px; }
-            h1 { font-size: 2em; }
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: var(--text-light);
+            margin-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            margin-top: 10px;
+        }
+
+        /* רשימות */
+        ul {
+            list-style-type: none;
+        }
+        
+        ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul li::before {
+            content: "✓";
+            color: var(--primary);
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        /* כפתור צף במובייל */
+        .sticky-btn-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-btn-wrapper {
+                display: block;
+            }
+            .btn-sticky {
+                margin: 0 auto;
+                padding: 15px;
+                max-width: 100%;
+            }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <header>
-        <h1>קסם וקשב</h1>
-        <div class="subtitle">ספר ילדים קסום לילדים שמרגישים שלא תמיד מבינים אותם</div>
-        <p>ספר רגשי ומלא דמיון על ילד שפוגש את הקשב שלו, ולומד לאט לאט שהוא לא מקולקל - הוא פשוט צריך להכיר את עצמו בדרך חדשה.</p>
-        <p><strong>לילדים ונוער בגילאי 10-16, להורים, למחנכים, למטפלים, ולכל מבוגר שפעם היה ילד שלא תמיד הבינו אותו.</strong></p>
+    <div class="container">
         
-        <a href="PUT_YOUR_PAYMENT_LINK_HERE" class="cta-button">לרכישת הספר המודפס</a>
-    </header>
+        <!-- כותרת ראשית -->
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1>קסם וקשב</h1>
+            <div class="subtitle">ספר ילדים קסום לילדים שאולי לא תמיד מבינים אותם.</div>
+            <p style="font-size: 1.2rem; color: var(--text-light);">
+                ספר מלא רגש ודמיון על ילד שפוגש את הקשב שלו, ולומד לאט לאט שהוא לא בעייתי, הוא פשוט צריך להכיר את עצמו בדרך חדשה.
+            </p>
+            <p style="margin-top: 15px; font-weight: bold;">
+                הספר מתאים לילדים ונוער בגילאי 10-16, להורים, למחנכים, למטפלים, ולכל מבוגר שפעם היה ילד שלא תמיד הבינו אותו.
+            </p>
+            <a href="#purchase" class="btn">לרכישת הספר המודפס</a>
+        </header>
 
-    <div class="poetic-text">
-        <strong>יש ילדים שגדלים בתחושה שמשהו בהם לא בסדר.</strong><br><br>
-        הם שוכחים.<br>
-        מתפזרים.<br>
-        מתקשים לשבת.<br>
-        דוחים משימות.<br>
-        מתפרצים לפעמים.<br>
-        מתאמצים מאוד, אבל עדיין שומעים שוב ושוב:<br><br>
-        "אתה יכול יותר."<br>
-        "למה אתה לא מקשיב?"<br>
-        "פשוט תתרכז."<br>
-        "מה הבעיה להתחיל?"<br><br>
-        ולאט לאט הילד עלול להתחיל להאמין שזה הוא.<br>
-        שהוא עצלן.<br>
-        שהוא בעייתי.<br>
-        שהוא פחות טוב מאחרים.
+        <!-- כרטיסייה: הרגש והכאב -->
+        <section class="card card-highlight">
+            <div class="poetic-text">
+                יש ילדים שגדלים בתחושה שמשהו איתם לא בסדר.
+            </div>
+            <div style="text-align: center; font-size: 1.2rem; line-height: 2;">
+                הם שוכחים.<br>
+                מתפזרים.<br>
+                מתקשים לשבת.<br>
+                דוחים משימות.<br>
+                מתפרצים לפעמים.<br>
+                מתאמצים מאוד.
+            </div>
+            <p style="text-align: center; margin-top: 20px; font-weight: bold;">אבל עדיין שומעים שוב ושוב:</p>
+            <div style="text-align: center; font-style: italic; color: var(--primary);">
+                "אתה יכול יותר."<br>
+                "למה אתה לא מקשיב?"<br>
+                "פשוט תתרכז."<br>
+                "מה הבעיה להתחיל?"
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                ולאט לאט הילד עלול להתחיל להאמין שזה מה הוא.<br>
+                שהוא עצלן. שהוא בעייתי. שהוא פחות טוב מאחרים.
+            </p>
+            <h3 style="text-align: center; color: var(--accent); margin-top: 30px; font-size: 1.5rem;">
+                הספר נכתב בדיוק בשביל הרגע הזה.<br>כדי לספר לילד סיפור אחר על עצמו.
+            </h3>
+        </section>
+
+        <!-- כרטיסייה: על הסיפור -->
+        <section class="card">
+            <h2>על מה הספר?</h2>
+            <p><strong>"קסם וקשב"</strong> הוא סיפור על ילד בשם קסם, ילד חכם, רגיש ומלא דמיון, שמתמודד עם קשיים שילדים רבים מכירים מקרוב: לימודים, חברה, הערות, תחושת כישלון, בלבול ורצון להצליח שמתנגש בקושי לבצע.</p>
+            <p>במהלך הסיפור קסם פוגש דמות מיוחדת, את הקשב שלו. בהתחלה היא נראית לו כמו משהו שמפריע לו, מבלבל אותו ומקשה עליו. אבל לאט לאט הוא מתחיל להבין אותה, לדבר איתה, להכיר אותה, ולגלות שבתוך הקושי מסתתרים גם כוחות.</p>
+            <p style="font-weight: bold; color: var(--primary);">הספר לוקח את הילד למסע בו הוא מכיר את הקשב שלו טוב יותר, ואולי בעצם, המסע שיגרום לו להכיר את עצמו ולראות עצמו בעיניים טובות יותר.</p>
+        </section>
+
+        <!-- כרטיסייה: למי מתאים -->
+        <section class="card">
+            <h2>למי הספר מתאים?</h2>
+            
+            <h3>לילדים ונוער בגילאי 10-16</h3>
+            <p>במיוחד לילדים שמתמודדים עם קשיי קשב וריכוז, תחושת שונות, קושי בלימודים, תסכולים חברתיים, דימוי עצמי נמוך, ביקורת עצמית, תחושה שהם "לא מספיק טובים" וקושי מול מסגרות וכללים.</p>
+            
+            <h3>להורים</h3>
+            <p>להורים שרואים את הילד שלהם נאבק, מתוסכל, מתפוצץ או נסגר, ורוצים לתת לו דרך רכה להבין את עצמו. לפעמים קשה לדבר עם ילד ישירות על הקושי שלו. סיפור טוב יכול לפתוח דלת ששיחה רגילה לא מצליחה.</p>
+
+            <h3>למורים, יועצים, מטפלים ומאמנים</h3>
+            <p>הספר יכול לשמש ככלי לפתיחת שיח רגשי עם ילדים על קשב, ביטחון עצמי, כוחות, תסכולים והתמודדות.</p>
+
+            <h3>וגם... למבוגרים</h3>
+            <p>הרבה מבוגרים עם קשב מגלים את עצמם רק בגיל מאוחר. הם קוראים תכנים על קשב ואומרים: "רגע, עכשיו אני מבין את הילדות שלי." כי אמנם הספר נכתב לילדים, אבל הוא בהחלט נוגע גם במבוגר שפעם היה ילד שלא תמיד הבינו אותו.</p>
+        </section>
+
+        <!-- כרטיסייה: למה סיפור ומה מקבלים -->
+        <section class="card">
+            <h2>למה דווקא דרך סיפור?</h2>
+            <p>כי ילדים (ואולי גם מבוגרים) לא תמיד רוצים עוד הסבר, ולא תמיד מסוגלים לשמוע עוד עצה. אבל סיפור, הם יכולים להרגיש. דרך הסיפור, הילד יכול לפגוש את הקשיים שלו בלי להרגיש שמאשימים אותו. הוא יכול להבין שהוא לא לבד, ולהתחיל לדבר על עצמו בשפה חדשה.</p>
+
+            <h2 style="margin-top: 30px;">מה הילד יכול לקבל מהספר?</h2>
+            <ul>
+                <li>להרגיש פחות לבד.</li>
+                <li>להבין שהקושי שלו לא מגדיר את כל מי שהוא.</li>
+                <li>לראות גם את הכוחות שלו.</li>
+                <li>לפתוח שיחה עם ההורים או עם מבוגר משמעותי.</li>
+                <li>להפחית ביקורת עצמית.</li>
+                <li>לקבל מילים לחוויות שהוא לא תמיד יודע להסביר.</li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                <em>הערה חשובה: הספר לא מחליף אבחון, טיפול או ליווי מקצועי. אבל הוא כן יכול להיות התחלה של שינוי בשפה, בהרגשה ובהבנה. ושינוי כזה יכול לשנות הרבה.</em>
+            </p>
+        </section>
+
+        <!-- כרטיסייה: למה כתבתי -->
+        <section class="card">
+            <h2>למה כתבתי את הספר?</h2>
+            <p>האמת היא שכתבתי את הספר ממקום מאד אישי, מעין מסר שרציתי להגיד לילד ההוא שאני הייתי פעם.</p>
+            <p>אבל לא רק. כמאמן קשב וכאיש מקצוע שמלווה תהליכים, ראיתי איך ילדים (ומבוגרים) נלחמים בעצמם כי לא היו להם את המילים הנכונות. סיפור ההרפתקאות הזה הוא בעצם מסר ממני לילד שבי ולהרבה ילדים גדלים בתחושה שהם צריכים להילחם בעצמם. וגם להרבה מבוגרים מבינים רק בגיל מאוחר שהם לא עצלנים פחות טובים, הם פשוט לא קיבלו בזמן את המילים להבין את עצמם.</p>
+            <p>רציתי לכתוב ספר שילד יוכל לקרוא היום, ולהתחבר לעצמו. לפני שהביקורת הופכת להיות הקול הפנימי שלו. ספר שיגיד לו: <strong>אתה לא בעייתי. יש בך קסם. ועכשיו בוא נלמד להכיר אותו ביחד.</strong></p>
+        </section>
+
+        <!-- כרטיסייה: עדויות ולמי לא מתאים -->
+        <section class="card">
+            <h2>מה אנשים כתבו על התכנים של קסם הקשב:</h2>
+            <div class="quote">"פתאום הבנתי את עצמי."</div>
+            <div class="quote">"היו לי דמעות כשסיימתי את הספר, דמעות של התרגשות."</div>
+            <div class="quote">"זה מסביר לי את הילדות שלי."</div>
+            <div class="quote">"המסרים שלך עוזרים לי להבין את הילד שלי אחרת."</div>
+            <div class="quote">"הלוואי שמישהו היה מסביר לי את זה כשהייתי קטן."</div>
+
+            <h3 style="margin-top: 30px;">למי הספר פחות מתאים?</h3>
+            <p>הספר פחות מתאים למי שמחפש ספר הדרכה מקצועי להורים, עם טבלאות, תרגילים והנחיות מסודרות. זה לא מדריך טכני. זה סיפור. הכוח שלו הוא רגשי, חווייתי וסיפורי.</p>
+        </section>
+
+        <!-- כרטיסייה: אזור רכישה -->
+        <section class="card card-highlight" id="purchase">
+            <h2>מה מקבלים?</h2>
+            <p><strong>ספר מודפס בכריכה רכה: קסם וקשב</strong><br>
+            סיפור מרגש ומרתק על ההכרות שלנו עם הקשב ועם עצמנו, מלווה באיורים שגורמים לסיפור לקבל מימד נוסף.<br>
+            <em>(מתאים גם לקריאה משותפת של הורה וילד כמתנה מעצימה)</em></p>
+
+            <div class="price-area">
+                <span class="old-price">מחיר רגיל: 78 ש"ח</span>
+                <span class="new-price">55 ש"ח</span>
+                <span>במחיר השקה מיוחד לרוכשים דרך העמוד</span>
+                
+                <a href="PUT_YOUR_PAYMENT_LINK_HERE" class="btn">אני רוצה להזמין את הספר</a>
+            </div>
+
+            <h3 style="margin-top: 30px;">משלוחים ואיסוף עצמי</h3>
+            <ul style="margin-bottom: 0;">
+                <li>📦 <strong>משלוח בדואר ישראל (כולל מספר מעקב):</strong> בתוספת 15 ש"ח. זמן אספקה משוער: עד 14 ימי עסקים (בכפוף לדואר ישראל).</li>
+                <li>📍 <strong>איסוף עצמי מבית שמש:</strong> ללא עלות. בתיאום מראש לאחר ביצוע ההזמנה.</li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-light); text-align: center; margin-top: 10px;">* לאחר ההזמנה תישלח הודעה עם פרטי האיסוף או המשלוח.</p>
+        </section>
+
+        <!-- שאלות נפוצות -->
+        <section class="card">
+            <h2>שאלות נפוצות</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">האם הספר מתאים רק לילדים עם אבחון ADHD?</div>
+                <div class="faq-answer">
+                    <p>לא. הספר מתאים במיוחד לילדים עם קשיי קשב וריכוז, אבל גם לילדים שחווים קושי בלימודים, בחברה, בהתארגנות, בדימוי עצמי או בתחושה שהם לא מובנים.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">האם זה ספר טיפולי?</div>
+                <div class="faq-answer">
+                    <p>לא בדיוק. זה ספר ילדים עלילתי ורגשי. אבל הוא נכתב מתוך הבנה עמוקה של עולם הקשב, ולכן הוא יכול לפתוח שיחות חשובות ולעזור לילד לראות את עצמו אחרת.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">האם הספר מתאים גם לילד שלא אוהב לקרוא?</div>
+                <div class="faq-answer">
+                    <p>תלוי בילד. אם הילד מתקשה בקריאה, אפשר לקרוא איתו יחד, להקריא לו פרק לפני השינה, או להשתמש בספר כבסיס לשיחה. המטרה היא לא רק "לסיים ספר", אלא ליצור חיבור. גם האיורים המיוחדים בספר יכולים לסייע במטרה זו.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">האם הספר מתאים גם להורים או מבוגרים?</div>
+                <div class="faq-answer">
+                    <p>כן. הרבה הורים יכולים למצוא בו דרך להבין טוב יותר את הילד שלהם, ולפעמים גם את עצמם.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="poetic-text" style="margin-bottom: 50px;">
+            יש ילדים ששומעים כל כך הרבה מה קשה בהם,<br>
+            עד שהם שוכחים לראות מה יפה בהם.<br><br>
+            <strong>"קסם וקשב" נכתב כדי להזכיר להם.</strong>
+        </div>
+
     </div>
 
-    <p class="center-text"><strong>הספר הזה נכתב בדיוק בשביל הרגע הזה.<br>כדי לתת לילד סיפור אחר על עצמו.</strong></p>
-
-    <h2>על מה הספר?</h2>
-    <p>"קסם וקשב" הוא סיפור על ילד בשם קסם, ילד חכם, רגיש ומלא דמיון, שמתמודד עם קשיים שילדים רבים מכירים מקרוב: לימודים, חברה, הערות, תחושת כישלון, בלבול ורצון להצליח שמתנגש בקושי לבצע.</p>
-    <p>במהלך הסיפור קסם פוגש דמות מיוחדת שמייצגת את הקשב שלו. בהתחלה היא נראית לו כמו משהו שמפריע לו, מבלבל אותו ומקשה עליו. אבל לאט לאט הוא מתחיל להבין אותה, לדבר איתה, להכיר אותה - ולגלות שבתוך הקושי מסתתרים גם כוחות.</p>
-    <p>זה לא ספר שמטיף לילד.<br>
-    זה לא ספר שאומר לו "תשתנה".<br>
-    זה ספר שמזמין אותו להכיר את עצמו בעיניים טובות יותר.</p>
-
-    <h2>למי הספר מתאים?</h2>
-    
-    <h3>לילדים ונוער בגילאי 10-16</h3>
-    <p>במיוחד לילדים שמתמודדים עם קשיי קשב וריכוז, תחושת שונות, קושי בלימודים, תסכולים חברתיים, דימוי עצמי נמוך, ביקורת עצמית, תחושה שהם "לא מספיק טובים" וקושי מול מסגרות וכללים.</p>
-    
-    <h3>להורים</h3>
-    <p>להורים שרואים את הילד שלהם נאבק, מתוסכל, מתפוצץ או נסגר, ורוצים לתת לו דרך רכה להבין את עצמו. לפעמים קשה לדבר עם ילד ישירות על הקושי שלו. סיפור טוב יכול לפתוח דלת ששיחה רגילה לא מצליחה לפתוח.</p>
-
-    <h3>למורים, יועצים, מטפלים ומאמנים</h3>
-    <p>הספר יכול לשמש ככלי לפתיחת שיח רגשי עם ילדים על קשב, ביטחון עצמי, כוחות, תסכולים והתמודדות. לא דרך אבחנה. לא דרך הרצאה. דרך סיפור.</p>
-
-    <h3>גם למבוגרים</h3>
-    <p>הרבה מבוגרים עם קשב מגלים את עצמם רק בגיל מאוחר. הם קוראים תכנים על קשב ואומרים: "רגע, זה מסביר לי את הילדות שלי." הספר נכתב לילדים, אבל הוא יכול לגעת גם במבוגר שפעם היה ילד שלא תמיד הבינו אותו.</p>
-
-    <h2>למה דווקא דרך סיפור?</h2>
-    <p>כי ילדים לא תמיד רוצים עוד הסבר, ולא תמיד מסוגלים לשמוע עוד עצה. אבל סיפור - הם יכולים להרגיש. דרך הסיפור, הילד יכול לפגוש את הקשיים שלו בלי להרגיש שמאשימים אותו. הוא יכול להבין שהוא לא לבד, ולהתחיל לדבר על עצמו בשפה חדשה. לא "אני בעייתי", אלא "אני לומד להבין איך הקשב שלי עובד."</p>
-
-    <h2>מה הילד יכול לקבל מהספר?</h2>
-    <ul>
-        <li>להרגיש פחות לבד.</li>
-        <li>להבין שהקושי שלו לא מגדיר את כל מי שהוא.</li>
-        <li>לראות גם את הכוחות שלו.</li>
-        <li>לפתוח שיחה עם ההורים או עם מבוגר משמעותי.</li>
-        <li>להפחית ביקורת עצמית.</li>
-        <li>לקבל מילים לחוויות שהוא לא תמיד יודע להסביר.</li>
-    </ul>
-    <p><em>הערה כנה: הספר לא מחליף אבחון, טיפול או ליווי מקצועי. אבל הוא כן יכול להיות התחלה של שינוי בשפה. ושינוי בשפה יכול לשנות הרבה.</em></p>
-
-    <h2>למה כתבתי את הספר?</h2>
-    <p>כתבתי את הספר הזה מהמקום הכי אישי שיש, אבל גם מהמקום המקצועי. כמאמן קשב וכאיש מקצוע שמלווה תהליכים, ראיתי איך ילדים (ומבוגרים) נלחמים בעצמם כי לא היו להם את המילים הנכונות.</p>
-    <p>בתוך סיפור ההרפתקאות הזה, שתלתי את הכלים המקצועיים שאני עובד איתם בקליניקה – כלים שמשנים את הדיבור הפנימי. הרבה ילדים גדלים בתחושה שהם צריכים להילחם בעצמם. הרבה מבוגרים מבינים רק בגיל מאוחר שהם לא היו עצלנים ולא פחות טובים - הם פשוט לא קיבלו בזמן את המילים להבין את עצמם.</p>
-    <p>רציתי לכתוב ספר שילד יוכל לקרוא היום, לפני שהביקורת הופכת להיות הקול הפנימי שלו. ספר שיגיד לו: <strong>אתה לא מקולקל. יש בך קסם. ועכשיו בוא נלמד להכיר אותו.</strong></p>
-
-    <h2>למי הספר פחות מתאים?</h2>
-    <p>הספר פחות מתאים למי שמחפש ספר הדרכה מקצועי להורים, עם טבלאות, תרגילים והנחיות מסודרות. זה לא מדריך טכני. זה סיפור. הכוח שלו הוא רגשי, חווייתי וסיפורי.</p>
-
-    <div class="testimonial-box">
-        <strong>מה אנשים כתבו על התכנים של קסם הקשב:</strong><br><br>
-        "פתאום הבנתי את עצמי."<br>
-        "זה מסביר לי את הילדות שלי."<br>
-        "הסרטונים שלך עוזרים לי להבין את הילד שלי אחרת."<br>
-        "הלוואי שמישהו היה מסביר לי את זה כשהייתי קטן."
+    <!-- כפתור צף למובייל -->
+    <div class="sticky-btn-wrapper">
+        <a href="#purchase" class="btn btn-sticky" style="margin: 0;">להזמנת הספר עכשיו</a>
     </div>
 
-    <div class="price-box">
-        <h3>מה מקבלים?</h3>
-        <p>ספר מודפס: <strong>קסם וקשב</strong><br>
-        (מתאים גם לקריאה משותפת של הורה וילד כמתנה מעצימה)</p>
-        <span class="original-price">78 ש"ח</span>
-        <span class="price">49 ש"ח</span>
-        <a href="PUT_YOUR_PAYMENT_LINK_HERE" class="cta-button">אני רוצה להזמין את הספר</a>
-    </div>
+    <!-- סקריפט להפעלת האקורדיון של השאלות הנפוצות -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                const answer = question.nextElementSibling;
+                
+                // סגירת כל האחרים
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
 
-    <h2>משלוחים ואיסוף עצמי</h2>
-    <ul>
-        <li>📦 <strong>משלוח בדואר ישראל (כולל מספר מעקב):</strong> בתוספת 15 ש"ח. זמן אספקה משוער: עד 14 ימי עסקים (בכפוף לדואר ישראל).</li>
-        <li>📍 <strong>איסוף עצמי מבית שמש:</strong> ללא עלות. בתיאום מראש לאחר ביצוע ההזמנה.</li>
-    </ul>
-    <p><em>* לאחר ההזמנה תישלח הודעה עם פרטי האיסוף או המשלוח.</em></p>
-
-    <h2>שאלות נפוצות</h2>
-    
-    <div class="faq-q">האם הספר מתאים רק לילדים עם אבחון ADHD?</div>
-    <div class="faq-a">לא. הספר מתאים במיוחד לילדים עם קשיי קשב וריכוז, אבל גם לילדים שחווים קושי בלימודים, בחברה, בהתארגנות, בדימוי עצמי או בתחושה שהם לא מובנים.</div>
-
-    <div class="faq-q">האם זה ספר טיפולי?</div>
-    <div class="faq-a">לא בדיוק. זה ספר ילדים עלילתי ורגשי. אבל הוא נכתב מתוך הבנה עמוקה של עולם הקשב, ולכן הוא יכול לפתוח שיחות חשובות ולעזור לילד לראות את עצמו אחרת.</div>
-
-    <div class="faq-q">האם הספר מתאים גם לילד שלא אוהב לקרוא?</div>
-    <div class="faq-a">תלוי בילד. אם הילד מתקשה בקריאה, אפשר לקרוא איתו יחד, להקריא לו פרק לפני השינה, או להשתמש בספר כבסיס לשיחה. המטרה היא לא רק "לסיים ספר", אלא ליצור חיבור.</div>
-
-    <div class="faq-q">האם הספר מתאים גם להורים?</div>
-    <div class="faq-a">כן. הרבה הורים יכולים למצוא בו דרך להבין טוב יותר את הילד שלהם, ולפעמים גם את עצמם.</div>
-
-    <div class="poetic-text" style="margin-top: 50px;">
-        יש ילדים ששומעים כל כך הרבה מה קשה בהם,<br>
-        עד שהם שוכחים לראות מה יפה בהם.<br><br>
-        <strong>"קסם וקשב" נכתב כדי להזכיר להם.</strong>
-    </div>
-
-    <a href="PUT_YOUR_PAYMENT_LINK_HERE" class="cta-button">להזמנת הספר עכשיו</a>
-
-</div>
-
+                // פתיחה או סגירה של הנוכחי
+                item.classList.toggle('active');
+                if (item.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    answer.style.maxHeight = null;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
