@@ -4,465 +4,841 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>קסם וקשב - משה מדינה</title>
-    <!-- טעינת פונט מודרני -->
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4F46E5; /* כחול-סגול מודרני ודינמי */
+            --primary: #4F46E5;
             --primary-hover: #4338CA;
             --secondary: #F3F4F6;
             --text-dark: #1F2937;
             --text-light: #4B5563;
-            --accent: #F59E0B; /* כתום-צהוב לקסם ולכפתורים */
+            --accent: #F59E0B;
             --accent-hover: #D97706;
             --bg-color: #F9FAFB;
+            --success: #10B981;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Heebo', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.7;
-            padding-bottom: 80px; /* מקום לכפתור הצף */
+            padding-bottom: 90px;
         }
 
-        /* עיצוב כללי למיכל האתר */
-        .container {
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 20px;
+        .container { max-width: 768px; margin: 0 auto; padding: 20px; }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar {
+            position: fixed; top: 0; right: 0; left: 0;
+            height: 3px; background: #E5E7EB; z-index: 300;
+        }
+        .progress-fill {
+            height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%; transition: width 0.1s linear;
         }
 
-        /* כרטיסיות מודרניות */
+        /* ── CARDS ── */
         .card {
             background: #ffffff;
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            border: 1px solid #F0F0F5;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #F3F4F6;
         }
-
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(79,70,229,0.08), 0 4px 10px rgba(0,0,0,0.05);
         }
-
-        .card-highlight {
-            border-top: 5px solid var(--accent);
-        }
-
-        /* כותרות */
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        /* הדגשות טקסט פואטיות */
-        .poetic-text {
-            font-size: 1.3rem;
-            font-weight: 400;
-            text-align: center;
-            color: var(--primary);
-            padding: 20px 0;
-            position: relative;
-        }
-
-        .poetic-text::before, .poetic-text::after {
-            content: "✨";
-            display: block;
-            font-size: 1.5rem;
-            margin: 10px auto;
-            opacity: 0.5;
-        }
-
-        /* כפתורים מודרניים */
-        .btn {
-            display: block;
-            width: 100%;
-            max-width: 350px;
-            margin: 30px auto;
-            padding: 18px 24px;
-            background-color: var(--accent);
+        .card-highlight { border-top: 5px solid var(--accent); }
+        .card-final {
+            background: linear-gradient(145deg, #1e1b4b 0%, #312e81 100%);
             color: #fff;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.4rem;
-            font-weight: 700;
-            border-radius: 50px;
-            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
             border: none;
         }
+        .card-final h2 { color: #fff; }
+        .card-final p { color: #C7D2FE; }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.05);
-            box-shadow: 0 15px 25px -5px rgba(245, 158, 11, 0.5);
+        /* ── TYPOGRAPHY ── */
+        h1 { font-size: 2.8rem; font-weight: 900; color: var(--primary); text-align: center; margin-bottom: 10px; letter-spacing: -1px; }
+        h2 { font-size: 1.75rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
+        h3 { font-size: 1.25rem; color: var(--text-dark); margin-top: 22px; margin-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 1.35rem; font-weight: 300; color: var(--text-light); margin-bottom: 30px; }
+        p { margin-bottom: 15px; font-size: 1.1rem; }
+
+        /* ── HERO ── */
+        .hero-wrapper {
+            background: linear-gradient(160deg, #EEF2FF 0%, #F9FAFB 60%);
+            border-radius: 24px;
+            padding: 40px 24px 30px;
+            margin-bottom: 28px;
+            text-align: center;
+            border: 1px solid #E0E7FF;
         }
 
-        /* אזור מחיר */
+        /* ── BOOK IMAGE ── */
+        .book-image-wrapper {
+            display: flex; justify-content: center;
+            margin: 28px 0 12px; perspective: 800px;
+        }
+        .book-image-wrapper img {
+            width: 200px; max-width: 65%;
+            border-radius: 10px;
+            box-shadow: -8px 12px 30px rgba(79,70,229,0.25), 0 6px 15px rgba(0,0,0,0.12);
+            transform: rotateY(-8deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .book-image-wrapper img:hover {
+            transform: rotateY(0deg) translateY(-6px);
+            box-shadow: 0 30px 60px rgba(79,70,229,0.22), 0 10px 25px rgba(0,0,0,0.1);
+        }
+        /* Placeholder when no image */
+        .book-placeholder {
+            width: 200px; height: 280px;
+            background: linear-gradient(145deg, #4F46E5, #7C3AED);
+            border-radius: 10px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: #fff; font-weight: 900; font-size: 1.2rem;
+            text-align: center; padding: 20px;
+            box-shadow: -8px 12px 30px rgba(79,70,229,0.3);
+            transform: rotateY(-8deg);
+            transition: transform 0.5s ease;
+            line-height: 1.4;
+        }
+        .book-placeholder:hover { transform: rotateY(0deg) translateY(-6px); }
+        .book-placeholder span { font-size: 2.5rem; margin-bottom: 12px; }
+
+        /* ── POETIC TEXT ── */
+        .poetic-text {
+            font-size: 1.25rem; font-weight: 400; text-align: center;
+            color: var(--primary); padding: 20px 0; position: relative;
+        }
+        .poetic-text::before, .poetic-text::after {
+            content: "✨"; display: block; font-size: 1.4rem;
+            margin: 8px auto; opacity: 0.5;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: block; width: 100%; max-width: 360px; margin: 24px auto;
+            padding: 18px 28px; background-color: var(--accent); color: #fff;
+            text-align: center; text-decoration: none; font-size: 1.35rem;
+            font-weight: 700; border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(245,158,11,0.35);
+            transition: all 0.25s ease; cursor: pointer; border: none;
+            font-family: 'Heebo', sans-serif;
+            position: relative; overflow: hidden;
+        }
+        .btn::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(rgba(255,255,255,0.15), transparent);
+            border-radius: inherit;
+        }
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 28px rgba(245,158,11,0.45);
+        }
+        .btn:active { transform: scale(0.98); }
+
+        .btn-ghost {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.4);
+            color: #fff;
+            box-shadow: none;
+            font-size: 1.1rem;
+            padding: 14px 24px;
+            max-width: 260px;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.12); box-shadow: none; transform: none; }
+
+        /* ── PULSE ANIMATION on main CTA ── */
+        @keyframes pulse-ring {
+            0%   { box-shadow: 0 0 0 0 rgba(245,158,11,0.4), 0 8px 20px rgba(245,158,11,0.35); }
+            70%  { box-shadow: 0 0 0 12px rgba(245,158,11,0), 0 8px 20px rgba(245,158,11,0.35); }
+            100% { box-shadow: 0 0 0 0 rgba(245,158,11,0), 0 8px 20px rgba(245,158,11,0.35); }
+        }
+        .btn-pulse { animation: pulse-ring 2.2s ease-out infinite; }
+
+        /* ── PRICE ── */
         .price-area {
             text-align: center;
             background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-            padding: 30px;
-            border-radius: 16px;
-            margin-top: 20px;
+            padding: 28px; border-radius: 16px; margin-top: 20px;
         }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #9CA3AF;
-            font-size: 1.2rem;
-            display: block;
+        .old-price { text-decoration: line-through; color: #9CA3AF; font-size: 1.15rem; display: block; }
+        .new-price { font-size: 3rem; font-weight: 900; color: var(--primary); display: block; line-height: 1.2; margin-bottom: 6px; }
+        .price-badge {
+            display: inline-block;
+            background: #DCFCE7; color: #15803D;
+            font-weight: 700; font-size: 0.9rem;
+            padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
         }
+        .pre-cta { text-align: center; font-size: 1.1rem; color: var(--text-light); margin-bottom: 4px; font-style: italic; }
 
-        .new-price {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary);
-            display: block;
-            line-height: 1.2;
-            margin-bottom: 10px;
+        /* ── TRUST ICONS ── */
+        .trust-row {
+            display: flex; justify-content: center; gap: 24px;
+            flex-wrap: wrap; margin-top: 16px;
         }
+        .trust-item { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
 
-        /* ציטוטים והמלצות */
+        /* ── QUOTES ── */
         .quote {
-            background-color: var(--secondary);
+            background: #fff;
+            border: 1px solid #E5E7EB;
             border-right: 4px solid var(--primary);
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border-radius: 8px 0 0 8px;
-            font-style: italic;
+            padding: 18px 20px; margin-bottom: 14px;
+            border-radius: 0 12px 12px 0;
+            transition: box-shadow 0.2s;
         }
+        .quote:hover { box-shadow: 0 4px 16px rgba(79,70,229,0.08); }
+        .quote-text { font-style: italic; font-size: 1.05rem; margin-bottom: 8px; color: var(--text-dark); }
+        .quote-author { font-size: 0.88rem; color: var(--text-light); font-weight: 700; }
 
-        /* שאלות נפוצות - אקורדיון אינטראקטיבי */
-        .faq-item {
-            border-bottom: 1px solid #E5E7EB;
-            padding: 15px 0;
-            cursor: pointer;
+        /* ── STATS ROW ── */
+        .stats-row {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            justify-content: center; margin: 20px 0;
         }
+        .stat-box {
+            flex: 1; min-width: 110px;
+            background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+            border-radius: 14px; padding: 18px 12px; text-align: center;
+        }
+        .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--primary); display: block; }
+        .stat-label { font-size: 0.85rem; color: var(--text-light); }
 
+        /* ── FAQ ── */
+        .faq-item { border-bottom: 1px solid #E5E7EB; padding: 16px 0; cursor: pointer; }
         .faq-question {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-weight: 700; font-size: 1.05rem; color: var(--text-dark);
+            display: flex; justify-content: space-between; align-items: center;
         }
+        .faq-icon {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--secondary); color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700; flex-shrink: 0;
+            transition: all 0.3s; margin-right: 8px;
+        }
+        .faq-item.active .faq-icon { background: var(--primary); color: #fff; transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: var(--text-light); }
+        .faq-item.active .faq-answer { margin-top: 10px; }
 
-        .faq-question::after {
-            content: "+";
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
+        /* ── LISTS ── */
+        ul { list-style-type: none; }
+        ul li { position: relative; padding-right: 28px; margin-bottom: 10px; font-size: 1.05rem; }
+        ul li::before { content: "✓"; color: var(--primary); position: absolute; right: 0; font-weight: 900; }
 
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            color: var(--text-light);
-            margin-top: 0;
-        }
-
-        .faq-item.active .faq-answer {
-            margin-top: 10px;
-        }
-
-        /* רשימות */
-        ul {
-            list-style-type: none;
-        }
-        
-        ul li {
-            position: relative;
-            padding-right: 25px;
-            margin-bottom: 10px;
-        }
-
-        ul li::before {
-            content: "✓";
-            color: var(--primary);
-            position: absolute;
-            right: 0;
-            font-weight: bold;
-        }
-
-        /* כפתור צף במובייל */
+        /* ── STICKY BUTTON ── */
         .sticky-btn-wrapper {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            padding: 15px;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
-            z-index: 100;
-            display: none;
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(8px);
+            padding: 12px 16px;
+            box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+            z-index: 100; display: none;
+        }
+        .sticky-inner { max-width: 500px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+        .sticky-price { font-weight: 900; color: var(--primary); font-size: 1.1rem; white-space: nowrap; }
+        .sticky-btn { margin: 0; flex: 1; padding: 14px; font-size: 1.1rem; }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(17,24,39,0.65);
+            backdrop-filter: blur(6px);
+            z-index: 200; align-items: center; justify-content: center; padding: 16px;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal {
+            background: #fff; border-radius: 24px;
+            padding: 36px 28px; max-width: 480px; width: 100%;
+            max-height: 92vh; overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+            position: relative;
+            animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        @media (max-width: 768px) {
-            .sticky-btn-wrapper {
-                display: block;
-            }
-            .btn-sticky {
-                margin: 0 auto;
-                padding: 15px;
-                max-width: 100%;
-            }
-            h1 { font-size: 2.2rem; }
+        .modal-close {
+            position: absolute; top: 14px; left: 14px;
+            background: #F3F4F6; border: none; border-radius: 50%;
+            width: 34px; height: 34px; font-size: 1rem;
+            cursor: pointer; color: var(--text-dark);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: #E5E7EB; }
+
+        .modal-title { font-size: 1.5rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+        .modal-sub { font-size: 0.95rem; color: var(--text-light); margin-bottom: 24px; }
+
+        /* Step indicator */
+        .steps-row {
+            display: flex; align-items: center; gap: 6px;
+            margin-bottom: 24px; direction: ltr;
+        }
+        .step-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: #E5E7EB; transition: background 0.3s;
+            flex-shrink: 0;
+        }
+        .step-dot.done { background: var(--success); }
+        .step-dot.active { background: var(--primary); width: 24px; border-radius: 5px; }
+        .step-line { flex: 1; height: 2px; background: #E5E7EB; }
+
+        .form-group { margin-bottom: 22px; }
+        .form-group label {
+            display: block; font-weight: 700; margin-bottom: 9px;
+            font-size: 1rem; color: var(--text-dark);
+        }
+        .form-group label span { color: var(--text-light); font-weight: 400; font-size: 0.88rem; }
+
+        /* Qty */
+        .qty-selector { display: flex; align-items: center; gap: 14px; }
+        .qty-btn {
+            width: 42px; height: 42px; border-radius: 50%;
+            border: 2px solid var(--primary); background: #fff;
+            color: var(--primary); font-size: 1.4rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .qty-btn:hover { background: var(--primary); color: #fff; }
+        .qty-display { font-size: 1.6rem; font-weight: 900; color: var(--text-dark); min-width: 32px; text-align: center; }
+
+        /* Pills */
+        .pill-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .pill-option { display: none; }
+        .pill-label {
+            padding: 11px 18px; border-radius: 50px;
+            border: 2px solid #E5E7EB; cursor: pointer;
+            font-size: 0.95rem; font-weight: 700; color: var(--text-light);
+            transition: all 0.2s; background: #fff;
+        }
+        .pill-option:checked + .pill-label { border-color: var(--primary); background: var(--primary); color: #fff; }
+
+        .delivery-sub {
+            margin-top: 10px; padding: 14px 16px;
+            background: #F9FAFB; border-radius: 12px;
+            font-size: 0.92rem; color: var(--text-light); border: 1px solid #E5E7EB;
+        }
+
+        .form-input {
+            width: 100%; padding: 13px 16px; border-radius: 12px;
+            border: 2px solid #E5E7EB; font-size: 1rem;
+            font-family: 'Heebo', sans-serif; transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fff;
+        }
+        .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+
+        /* Channel */
+        .channel-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .channel-option { display: none; }
+        .channel-label {
+            display: flex; align-items: center; gap: 7px;
+            padding: 11px 16px; border-radius: 12px;
+            border: 2px solid #E5E7EB; cursor: pointer;
+            font-size: 0.93rem; font-weight: 700; color: var(--text-light);
+            transition: all 0.2s; background: #fff;
+        }
+        .channel-option:checked + .channel-label { border-color: var(--primary); background: #EEF2FF; color: var(--primary); }
+        .channel-icon { font-size: 1.15rem; }
+
+        /* Summary */
+        .order-summary {
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            border-radius: 14px; padding: 18px; margin: 20px 0;
+        }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.97rem; }
+        .summary-row.total {
+            font-weight: 900; font-size: 1.2rem; color: var(--primary);
+            border-top: 1px solid #C7D2FE; padding-top: 10px; margin-top: 4px; margin-bottom: 0;
+        }
+
+        .btn-send {
+            width: 100%; padding: 17px; background: var(--accent); color: #fff;
+            border: none; border-radius: 50px; font-size: 1.2rem; font-weight: 700;
+            cursor: pointer; transition: all 0.25s; font-family: 'Heebo', sans-serif;
+            box-shadow: 0 8px 20px rgba(245,158,11,0.35);
+        }
+        .btn-send:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 12px 24px rgba(245,158,11,0.45); }
+        .btn-send:disabled { background: #D1D5DB; box-shadow: none; cursor: not-allowed; color: #9CA3AF; }
+
+        /* Success */
+        .modal-success { display: none; text-align: center; padding: 20px 0; }
+        .modal-success.show { display: block; }
+        .modal-form.hidden { display: none; }
+        .success-icon { font-size: 3.5rem; margin-bottom: 14px; animation: bounce 0.6s ease; }
+        @keyframes bounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+        .modal-success h2 { color: var(--primary); margin-bottom: 10px; font-size: 1.6rem; }
+        .modal-success p { color: var(--text-light); font-size: 1.05rem; }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            text-align: center; padding: 20px;
+            font-size: 0.88rem; color: #9CA3AF; margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .sticky-btn-wrapper { display: block; }
+            h1 { font-size: 2.1rem; }
+            .modal { padding: 28px 18px; }
+            .stats-row { gap: 10px; }
+            .stat-box { padding: 14px 8px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- כותרת ראשית -->
-        <header style="text-align: center; margin-bottom: 40px;">
-            <h1>קסם וקשב</h1>
-            <div class="subtitle">ספר ילדים קסום לילדים שאולי לא תמיד מבינים אותם.</div>
-            <p style="font-size: 1.2rem; color: var(--text-light);">
-                ספר מלא רגש ודמיון על ילד שפוגש את הקשב שלו, ולומד לאט לאט שהוא לא בעייתי, הוא פשוט צריך להכיר את עצמו בדרך חדשה.
-            </p>
-            <p style="margin-top: 15px; font-weight: bold;">
-                הספר מתאים לילדים ונוער בגילאי 10-16, להורים, למחנכים, למטפלים, ולכל מבוגר שפעם היה ילד שלא תמיד הבינו אותו.
-            </p>
-            <a href="#purchase" class="btn">לרכישת הספר המודפס</a>
-        </header>
+<!-- Progress bar -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
-        <!-- כרטיסייה: הרגש והכאב -->
-        <section class="card card-highlight">
-            <div class="poetic-text">
-                יש ילדים שגדלים בתחושה שמשהו איתם לא בסדר.
+<div class="container">
+
+    <!-- ══ HERO ══ -->
+    <div class="hero-wrapper reveal">
+        <h1>קסם וקשב</h1>
+        <div class="subtitle">ספר ילדים קסום לילדים שאולי לא תמיד מבינים אותם.</div>
+
+        <!-- תמונת הספר — העלה קובץ בשם book-cover.jpg לגיטהאב באותה תיקייה -->
+        <div class="book-image-wrapper">
+            <img src="book-cover.jpg" alt="עטיפת הספר קסם וקשב"
+                 onerror="this.style.display='none'; document.getElementById('bookPlaceholder').style.display='flex';">
+            <div class="book-placeholder" id="bookPlaceholder" style="display:none;">
+                <span>✨</span>
+                קסם<br>וקשב
+                <div style="font-size:0.75rem; font-weight:400; margin-top:8px; opacity:0.7;">משה מדינה</div>
             </div>
-            <div style="text-align: center; font-size: 1.2rem; line-height: 2;">
-                הם שוכחים.<br>
-                מתפזרים.<br>
-                מתקשים לשבת.<br>
-                דוחים משימות.<br>
-                מתפרצים לפעמים.<br>
-                מתאמצים מאוד.
-            </div>
-            <p style="text-align: center; margin-top: 20px; font-weight: bold;">אבל עדיין שומעים שוב ושוב:</p>
-            <div style="text-align: center; font-style: italic; color: var(--primary);">
-                "אתה יכול יותר."<br>
-                "למה אתה לא מקשיב?"<br>
-                "פשוט תתרכז."<br>
-                "מה הבעיה להתחיל?"
-            </div>
-            <p style="text-align: center; margin-top: 20px;">
-                ולאט לאט הילד עלול להתחיל להאמין שזה מה הוא.<br>
-                שהוא עצלן. שהוא בעייתי. שהוא פחות טוב מאחרים.
-            </p>
-            <h3 style="text-align: center; color: var(--accent); margin-top: 30px; font-size: 1.5rem;">
-                הספר נכתב בדיוק בשביל הרגע הזה.<br>כדי לספר לילד סיפור אחר על עצמו.
-            </h3>
-        </section>
-
-        <!-- כרטיסייה: על הסיפור -->
-        <section class="card">
-            <h2>על מה הספר?</h2>
-            <p><strong>"קסם וקשב"</strong> הוא סיפור על ילד בשם קסם, ילד חכם, רגיש ומלא דמיון, שמתמודד עם קשיים שילדים רבים מכירים מקרוב: לימודים, חברה, הערות, תחושת כישלון, בלבול ורצון להצליח שמתנגש בקושי לבצע.</p>
-            <p>במהלך הסיפור קסם פוגש דמות מיוחדת, את הקשב שלו. בהתחלה היא נראית לו כמו משהו שמפריע לו, מבלבל אותו ומקשה עליו. אבל לאט לאט הוא מתחיל להבין אותה, לדבר איתה, להכיר אותה, ולגלות שבתוך הקושי מסתתרים גם כוחות.</p>
-            <p style="font-weight: bold; color: var(--primary);">הספר לוקח את הילד למסע בו הוא מכיר את הקשב שלו טוב יותר, ואולי בעצם, המסע שיגרום לו להכיר את עצמו ולראות עצמו בעיניים טובות יותר.</p>
-        </section>
-
-        <!-- כרטיסייה: למי מתאים -->
-        <section class="card">
-            <h2>למי הספר מתאים?</h2>
-            
-            <h3>לילדים ונוער בגילאי 10-16</h3>
-            <p>במיוחד לילדים שמתמודדים עם קשיי קשב וריכוז, תחושת שונות, קושי בלימודים, תסכולים חברתיים, דימוי עצמי נמוך, ביקורת עצמית, תחושה שהם "לא מספיק טובים" וקושי מול מסגרות וכללים.</p>
-            
-            <h3>להורים</h3>
-            <p>להורים שרואים את הילד שלהם נאבק, מתוסכל, מתפוצץ או נסגר, ורוצים לתת לו דרך רכה להבין את עצמו. לפעמים קשה לדבר עם ילד ישירות על הקושי שלו. סיפור טוב יכול לפתוח דלת ששיחה רגילה לא מצליחה.</p>
-
-            <h3>למורים, יועצים, מטפלים ומאמנים</h3>
-            <p>הספר יכול לשמש ככלי לפתיחת שיח רגשי עם ילדים על קשב, ביטחון עצמי, כוחות, תסכולים והתמודדות.</p>
-
-            <h3>וגם... למבוגרים</h3>
-            <p>הרבה מבוגרים עם קשב מגלים את עצמם רק בגיל מאוחר. הם קוראים תכנים על קשב ואומרים: "רגע, עכשיו אני מבין את הילדות שלי." כי אמנם הספר נכתב לילדים, אבל הוא בהחלט נוגע גם במבוגר שפעם היה ילד שלא תמיד הבינו אותו.</p>
-        </section>
-
-        <!-- כרטיסייה: למה סיפור ומה מקבלים -->
-        <section class="card">
-            <h2>למה דווקא דרך סיפור?</h2>
-            <p>כי ילדים (ואולי גם מבוגרים) לא תמיד רוצים עוד הסבר, ולא תמיד מסוגלים לשמוע עוד עצה. אבל סיפור, הם יכולים להרגיש. דרך הסיפור, הילד יכול לפגוש את הקשיים שלו בלי להרגיש שמאשימים אותו. הוא יכול להבין שהוא לא לבד, ולהתחיל לדבר על עצמו בשפה חדשה.</p>
-
-            <h2 style="margin-top: 30px;">מה הילד יכול לקבל מהספר?</h2>
-            <ul>
-                <li>להרגיש פחות לבד.</li>
-                <li>להבין שהקושי שלו לא מגדיר את כל מי שהוא.</li>
-                <li>לראות גם את הכוחות שלו.</li>
-                <li>לפתוח שיחה עם ההורים או עם מבוגר משמעותי.</li>
-                <li>להפחית ביקורת עצמית.</li>
-                <li>לקבל מילים לחוויות שהוא לא תמיד יודע להסביר.</li>
-            </ul>
-            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-                <em>הערה חשובה: הספר לא מחליף אבחון, טיפול או ליווי מקצועי. אבל הוא כן יכול להיות התחלה של שינוי בשפה, בהרגשה ובהבנה. ושינוי כזה יכול לשנות הרבה.</em>
-            </p>
-        </section>
-
-        <!-- כרטיסייה: למה כתבתי -->
-        <section class="card">
-            <h2>למה כתבתי את הספר?</h2>
-            <p>האמת היא שכתבתי את הספר ממקום מאד אישי, מעין מסר שרציתי להגיד לילד ההוא שאני הייתי פעם.</p>
-            <p>אבל לא רק. כמאמן קשב וכאיש מקצוע שמלווה תהליכים, ראיתי איך ילדים (ומבוגרים) נלחמים בעצמם כי לא היו להם את המילים הנכונות. סיפור ההרפתקאות הזה הוא בעצם מסר ממני לילד שבי ולהרבה ילדים גדלים בתחושה שהם צריכים להילחם בעצמם. וגם להרבה מבוגרים מבינים רק בגיל מאוחר שהם לא עצלנים פחות טובים, הם פשוט לא קיבלו בזמן את המילים להבין את עצמם.</p>
-            <p>רציתי לכתוב ספר שילד יוכל לקרוא היום, ולהתחבר לעצמו. לפני שהביקורת הופכת להיות הקול הפנימי שלו. ספר שיגיד לו: <strong>אתה לא בעייתי. יש בך קסם. ועכשיו בוא נלמד להכיר אותו ביחד.</strong></p>
-        </section>
-
-        <!-- כרטיסייה: עדויות ולמי לא מתאים -->
-        <section class="card">
-            <h2>מה אנשים כתבו על התכנים של קסם הקשב:</h2>
-            <div class="quote">"פתאום הבנתי את עצמי."</div>
-            <div class="quote">"היו לי דמעות כשסיימתי את הספר, דמעות של התרגשות."</div>
-            <div class="quote">"זה מסביר לי את הילדות שלי."</div>
-            <div class="quote">"המסרים שלך עוזרים לי להבין את הילד שלי אחרת."</div>
-            <div class="quote">"הלוואי שמישהו היה מסביר לי את זה כשהייתי קטן."</div>
-
-            <h3 style="margin-top: 30px;">למי הספר פחות מתאים?</h3>
-            <p>הספר פחות מתאים למי שמחפש ספר הדרכה מקצועי להורים, עם טבלאות, תרגילים והנחיות מסודרות. זה לא מדריך טכני. זה סיפור. הכוח שלו הוא רגשי, חווייתי וסיפורי.</p>
-        </section>
-
-        <!-- כרטיסייה: אזור רכישה -->
-        <section class="card card-highlight" id="purchase">
-            <h2>מה מקבלים?</h2>
-            <p><strong>ספר מודפס בכריכה רכה: קסם וקשב</strong><br>
-            סיפור מרגש ומרתק על ההכרות שלנו עם הקשב ועם עצמנו, מלווה באיורים שגורמים לסיפור לקבל מימד נוסף.<br>
-            <em>(מתאים גם לקריאה משותפת של הורה וילד כמתנה מעצימה)</em></p>
-
-            <div class="price-area">
-                <span class="old-price">מחיר רגיל: 78 ש"ח</span>
-                <span class="new-price">55 ש"ח</span>
-                <span>במחיר השקה מיוחד לרוכשים דרך העמוד</span>
-                
-                <a href="PUT_YOUR_PAYMENT_LINK_HERE" class="btn">אני רוצה להזמין את הספר</a>
-            </div>
-
-            <h3 style="margin-top: 30px;">משלוחים ואיסוף עצמי</h3>
-            <ul style="margin-bottom: 0;">
-                <li>📦 <strong>משלוח בדואר ישראל (כולל מספר מעקב):</strong> בתוספת 15 ש"ח. זמן אספקה משוער: עד 14 ימי עסקים (בכפוף לדואר ישראל).</li>
-                <li>📍 <strong>איסוף עצמי מבית שמש:</strong> ללא עלות. בתיאום מראש לאחר ביצוע ההזמנה.</li>
-            </ul>
-            <p style="font-size: 0.9rem; color: var(--text-light); text-align: center; margin-top: 10px;">* לאחר ההזמנה תישלח הודעה עם פרטי האיסוף או המשלוח.</p>
-        </section>
-
-        <!-- שאלות נפוצות -->
-        <section class="card">
-            <h2>שאלות נפוצות</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">האם הספר מתאים רק לילדים עם אבחון ADHD?</div>
-                <div class="faq-answer">
-                    <p>לא. הספר מתאים במיוחד לילדים עם קשיי קשב וריכוז, אבל גם לילדים שחווים קושי בלימודים, בחברה, בהתארגנות, בדימוי עצמי או בתחושה שהם לא מובנים.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">האם זה ספר טיפולי?</div>
-                <div class="faq-answer">
-                    <p>לא בדיוק. זה ספר ילדים עלילתי ורגשי. אבל הוא נכתב מתוך הבנה עמוקה של עולם הקשב, ולכן הוא יכול לפתוח שיחות חשובות ולעזור לילד לראות את עצמו אחרת.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">האם הספר מתאים גם לילד שלא אוהב לקרוא?</div>
-                <div class="faq-answer">
-                    <p>תלוי בילד. אם הילד מתקשה בקריאה, אפשר לקרוא איתו יחד, להקריא לו פרק לפני השינה, או להשתמש בספר כבסיס לשיחה. המטרה היא לא רק "לסיים ספר", אלא ליצור חיבור. גם האיורים המיוחדים בספר יכולים לסייע במטרה זו.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">האם הספר מתאים גם להורים או מבוגרים?</div>
-                <div class="faq-answer">
-                    <p>כן. הרבה הורים יכולים למצוא בו דרך להבין טוב יותר את הילד שלהם, ולפעמים גם את עצמם.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="poetic-text" style="margin-bottom: 50px;">
-            יש ילדים ששומעים כל כך הרבה מה קשה בהם,<br>
-            עד שהם שוכחים לראות מה יפה בהם.<br><br>
-            <strong>"קסם וקשב" נכתב כדי להזכיר להם.</strong>
         </div>
 
+        <p style="font-size: 1.15rem; color: var(--text-light); margin-top: 20px; margin-bottom: 0;">
+            ספר מלא רגש ודמיון על ילד שפוגש את הקשב שלו, ולומד לאט לאט שהוא לא בעייתי —
+            הוא פשוט צריך להכיר את עצמו בדרך חדשה.
+        </p>
+        <p style="margin-top: 12px; font-weight: 700; margin-bottom: 0;">
+            מתאים לגילאי 10–16, להורים, למחנכים, למטפלים — ולכל מבוגר שפעם היה ילד שלא תמיד הבינו אותו.
+        </p>
+
+        <!-- Stats -->
+        <div class="stats-row" style="margin-top: 28px;">
+            <div class="stat-box">
+                <span class="stat-num">1,000+</span>
+                <span class="stat-label">חברי קהילה</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">לכל</span>
+                <span class="stat-label">הגילאים</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">❤️</span>
+                <span class="stat-label">נכתב מהלב</span>
+            </div>
+        </div>
     </div>
 
-    <!-- כפתור צף למובייל -->
-    <div class="sticky-btn-wrapper">
-        <a href="#purchase" class="btn btn-sticky" style="margin: 0;">להזמנת הספר עכשיו</a>
+    <!-- ══ PAIN ══ -->
+    <section class="card card-highlight reveal">
+        <div class="poetic-text">
+            יש ילדים שגדלים בתחושה שמשהו איתם לא בסדר.
+        </div>
+        <div style="text-align: center; font-size: 1.2rem; line-height: 2.1;">
+            הם שוכחים.<br>מתפזרים.<br>מתקשים לשבת.<br>
+            דוחים משימות.<br>מתפרצים לפעמים.<br>מתאמצים מאוד.
+        </div>
+        <p style="text-align: center; margin-top: 22px; font-weight: bold;">אבל עדיין שומעים שוב ושוב:</p>
+        <div style="text-align: center; font-style: italic; color: var(--primary); font-size: 1.1rem; line-height: 2;">
+            "אתה יכול יותר."<br>"למה אתה לא מקשיב?"<br>
+            "פשוט תתרכז."<br>"מה הבעיה להתחיל?"
+        </div>
+        <p style="text-align: center; margin-top: 22px;">
+            ולאט לאט הילד עלול להתחיל להאמין שזה מה הוא.<br>
+            שהוא עצלן. שהוא בעייתי. שהוא פחות טוב מאחרים.
+        </p>
+        <h3 style="text-align: center; color: var(--accent); margin-top: 28px; font-size: 1.45rem; margin-bottom: 0;">
+            הספר נכתב בדיוק בשביל הרגע הזה.<br>כדי לספר לילד סיפור אחר על עצמו.
+        </h3>
+    </section>
+
+    <!-- ══ ABOUT ══ -->
+    <section class="card reveal">
+        <h2>על מה הספר?</h2>
+        <p><strong>"קסם וקשב"</strong> הוא סיפור על ילד בשם קסם, ילד חכם, רגיש ומלא דמיון, שמתמודד עם קשיים שילדים רבים מכירים מקרוב: לימודים, חברה, הערות, תחושת כישלון, בלבול ורצון להצליח שמתנגש בקושי לבצע.</p>
+        <p>במהלך הסיפור קסם פוגש דמות מיוחדת, את הקשב שלו. בהתחלה היא נראית לו כמו משהו שמפריע לו, מבלבל אותו ומקשה עליו. אבל לאט לאט הוא מתחיל להבין אותה, לדבר איתה, להכיר אותה, ולגלות שבתוך הקושי מסתתרים גם כוחות.</p>
+        <p style="font-weight: bold; color: var(--primary); margin-bottom: 0;">הספר לוקח את הילד למסע בו הוא מכיר את הקשב שלו טוב יותר, ואולי בעצם — המסע שיגרום לו להכיר את עצמו ולראות עצמו בעיניים טובות יותר.</p>
+    </section>
+
+    <!-- ══ FOR WHOM ══ -->
+    <section class="card reveal">
+        <h2>למי הספר מתאים?</h2>
+        <h3>לילדים ונוער בגילאי 10-16</h3>
+        <p>במיוחד לילדים שמתמודדים עם קשיי קשב וריכוז, תחושת שונות, קושי בלימודים, תסכולים חברתיים, דימוי עצמי נמוך, ביקורת עצמית, תחושה שהם "לא מספיק טובים" וקושי מול מסגרות וכללים.</p>
+        <h3>להורים</h3>
+        <p>להורים שרואים את הילד שלהם נאבק, מתוסכל, מתפוצץ או נסגר, ורוצים לתת לו דרך רכה להבין את עצמו. לפעמים קשה לדבר עם ילד ישירות על הקושי שלו. סיפור טוב יכול לפתוח דלת ששיחה רגילה לא מצליחה.</p>
+        <h3>למורים, יועצים, מטפלים ומאמנים</h3>
+        <p>הספר יכול לשמש ככלי לפתיחת שיח רגשי עם ילדים על קשב, ביטחון עצמי, כוחות, תסכולים והתמודדות.</p>
+        <h3>וגם... למבוגרים</h3>
+        <p style="margin-bottom: 0;">הרבה מבוגרים עם קשב מגלים את עצמם רק בגיל מאוחר. הם קוראים תכנים על קשב ואומרים: "רגע, עכשיו אני מבין את הילדות שלי." כי אמנם הספר נכתב לילדים, אבל הוא בהחלט נוגע גם במבוגר שפעם היה ילד שלא תמיד הבינו אותו.</p>
+    </section>
+
+    <!-- ══ WHY STORY ══ -->
+    <section class="card reveal">
+        <h2>למה דווקא דרך סיפור?</h2>
+        <p>כי ילדים (ואולי גם מבוגרים) לא תמיד רוצים עוד הסבר, ולא תמיד מסוגלים לשמוע עוד עצה. אבל סיפור, הם יכולים להרגיש. דרך הסיפור, הילד יכול לפגוש את הקשיים שלו בלי להרגיש שמאשימים אותו. הוא יכול להבין שהוא לא לבד, ולהתחיל לדבר על עצמו בשפה חדשה.</p>
+        <h2 style="margin-top: 28px;">מה הילד יכול לקבל מהספר?</h2>
+        <ul>
+            <li>להרגיש פחות לבד.</li>
+            <li>להבין שהקושי שלו לא מגדיר את כל מי שהוא.</li>
+            <li>לראות גם את הכוחות שלו.</li>
+            <li>לפתוח שיחה עם ההורים או עם מבוגר משמעותי.</li>
+            <li>להפחית ביקורת עצמית.</li>
+            <li>לקבל מילים לחוויות שהוא לא תמיד יודע להסביר.</li>
+        </ul>
+        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 16px; border-top: 1px solid #eee; padding-top: 12px; margin-bottom: 0;">
+            <em>הערה חשובה: הספר לא מחליף אבחון, טיפול או ליווי מקצועי. אבל הוא כן יכול להיות התחלה של שינוי בשפה, בהרגשה ובהבנה. ושינוי כזה יכול לשנות הרבה.</em>
+        </p>
+    </section>
+
+    <!-- ══ WHY I WROTE ══ -->
+    <section class="card reveal">
+        <h2>למה כתבתי את הספר?</h2>
+        <p>האמת היא שכתבתי את הספר ממקום מאד אישי, מעין מסר שרציתי להגיד לילד ההוא שאני הייתי פעם.</p>
+        <p>אבל לא רק. כמאמן קשב וכאיש מקצוע שמלווה תהליכים, ראיתי איך ילדים (ומבוגרים) נלחמים בעצמם כי לא היו להם את המילים הנכונות. סיפור ההרפתקאות הזה הוא בעצם מסר ממני לילד שבי ולהרבה ילדים גדלים בתחושה שהם צריכים להילחם בעצמם. וגם להרבה מבוגרים שמבינים רק בגיל מאוחר שהם לא עצלנים ולא פחות טובים — הם פשוט לא קיבלו בזמן את המילים להבין את עצמם.</p>
+        <p style="margin-bottom: 0;">רציתי לכתוב ספר שילד יוכל לקרוא היום, ולהתחבר לעצמו. לפני שהביקורת הופכת להיות הקול הפנימי שלו. ספר שיגיד לו: <strong>אתה לא בעייתי. יש בך קסם. ועכשיו בוא נלמד להכיר אותו ביחד.</strong></p>
+    </section>
+
+    <!-- ══ TESTIMONIALS ══ -->
+    <section class="card reveal">
+        <h2>מה אנשים כתבו על התכנים של קסם הקשב:</h2>
+
+        <div class="quote">
+            <div class="quote-text">"פתאום הבנתי את עצמי. כאילו מישהו סוף סוף דיבר בשפה שאני מבין."</div>
+            <div class="quote-author">— אבא לילד בן 13</div>
+        </div>
+        <div class="quote">
+            <div class="quote-text">"היו לי דמעות כשסיימתי את הספר, דמעות של התרגשות."</div>
+            <div class="quote-author">— אמא לילדה בת 11</div>
+        </div>
+        <div class="quote">
+            <div class="quote-text">"זה מסביר לי את הילדות שלי. לוואי שמישהו היה נותן לי את הספר הזה אז."</div>
+            <div class="quote-author">— מבוגר שאובחן עם ADHD בגיל 38</div>
+        </div>
+        <div class="quote">
+            <div class="quote-text">"המסרים שלך עוזרים לי להבין את הילד שלי אחרת. השיחות בינינו השתנו."</div>
+            <div class="quote-author">— אמא מהקהילה</div>
+        </div>
+        <div class="quote">
+            <div class="quote-text">"הלוואי שמישהו היה מסביר לי את זה כשהייתי קטן."</div>
+            <div class="quote-author">— מורה חינוך מיוחד</div>
+        </div>
+
+        <h3 style="margin-top: 28px;">למי הספר פחות מתאים?</h3>
+        <p style="margin-bottom: 0;">הספר פחות מתאים למי שמחפש ספר הדרכה מקצועי להורים, עם טבלאות, תרגילים והנחיות מסודרות. זה לא מדריך טכני. זה סיפור. הכוח שלו הוא רגשי, חווייתי וסיפורי.</p>
+    </section>
+
+    <!-- ══ PURCHASE ══ -->
+    <section class="card card-highlight reveal" id="purchase">
+        <h2>מה מקבלים?</h2>
+        <p><strong>ספר מודפס בכריכה רכה: קסם וקשב</strong><br>
+        סיפור מרגש ומרתק על ההכרות שלנו עם הקשב ועם עצמנו, מלווה באיורים שגורמים לסיפור לקבל מימד נוסף.<br>
+        <em>(מתאים גם לקריאה משותפת של הורה וילד כמתנה מעצימה)</em></p>
+
+        <div class="price-area">
+            <span class="old-price">מחיר רגיל: 78 ש"ח</span>
+            <span class="new-price">55 ש"ח</span>
+            <span class="price-badge">✓ חוסכים 23 ש"ח</span>
+            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 0;">מחיר השקה מיוחד לרוכשים דרך העמוד</p>
+
+            <p class="pre-cta" style="margin-top: 18px;">
+                תהליך פשוט — בוחרים כמה ספרים, איך להגיע אליך, ואנחנו שולחים לינק לתשלום ישר למקום הנוח לך.
+            </p>
+            <button class="btn btn-pulse" onclick="openModal()">אני רוצה להזמין את הספר 📚</button>
+
+            <div class="trust-row">
+                <span class="trust-item">🔒 אין חיוב עכשיו</span>
+                <span class="trust-item">📦 משלוח מהיר</span>
+                <span class="trust-item">💬 שירות אישי</span>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 28px;">משלוחים ואיסוף עצמי</h3>
+        <ul style="margin-bottom: 0;">
+            <li>📦 <strong>משלוח בדואר ישראל (כולל מספר מעקב):</strong> בתוספת 15 ש"ח. זמן אספקה משוער: עד 14 ימי עסקים.</li>
+            <li>📍 <strong>איסוף עצמי מבית שמש:</strong> ללא עלות. בתיאום מראש לאחר ביצוע ההזמנה.</li>
+        </ul>
+        <p style="font-size: 0.88rem; color: var(--text-light); text-align: center; margin-top: 12px; margin-bottom: 0;">* לאחר ההזמנה תישלח הודעה עם פרטי האיסוף או המשלוח.</p>
+    </section>
+
+    <!-- ══ FAQ ══ -->
+    <section class="card reveal">
+        <h2>שאלות נפוצות</h2>
+        <div class="faq-item">
+            <div class="faq-question">האם הספר מתאים רק לילדים עם אבחון ADHD? <span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>לא. הספר מתאים במיוחד לילדים עם קשיי קשב וריכוז, אבל גם לילדים שחווים קושי בלימודים, בחברה, בהתארגנות, בדימוי עצמי או בתחושה שהם לא מובנים.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">האם זה ספר טיפולי? <span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>לא בדיוק. זה ספר ילדים עלילתי ורגשי. אבל הוא נכתב מתוך הבנה עמוקה של עולם הקשב, ולכן הוא יכול לפתוח שיחות חשובות ולעזור לילד לראות את עצמו אחרת.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">האם הספר מתאים גם לילד שלא אוהב לקרוא? <span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>תלוי בילד. אם הילד מתקשה בקריאה, אפשר לקרוא איתו יחד, להקריא לו פרק לפני השינה, או להשתמש בספר כבסיס לשיחה. גם האיורים המיוחדים בספר יכולים לסייע.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">האם הספר מתאים גם להורים או מבוגרים? <span class="faq-icon">+</span></div>
+            <div class="faq-answer"><p>כן. הרבה הורים יכולים למצוא בו דרך להבין טוב יותר את הילד שלהם, ולפעמים גם את עצמם.</p></div>
+        </div>
+    </section>
+
+    <!-- ══ FINAL CTA ══ -->
+    <section class="card card-final reveal" style="text-align: center; padding: 40px 28px;">
+        <div class="poetic-text" style="color: #C7D2FE; padding: 0 0 24px;">
+            יש ילדים ששומעים כל כך הרבה מה קשה בהם,<br>
+            עד שהם שוכחים לראות מה יפה בהם.
+        </div>
+        <h2 style="font-size: 1.5rem; margin-bottom: 12px;">"קסם וקשב" נכתב כדי להזכיר להם.</h2>
+        <p style="margin-bottom: 24px;">כי כל ילד ראוי לשמוע סיפור אחר על עצמו.</p>
+        <button class="btn btn-pulse" onclick="openModal()" style="margin: 0 auto 16px;">
+            להזמנת הספר עכשיו 📚
+        </button>
+        <p style="font-size: 0.9rem; color: #A5B4FC; margin-bottom: 0;">55 ש"ח בלבד · משלוח עד הבית · לינק לתשלום בוואצאפ / מייל / SMS</p>
+    </section>
+
+    <footer class="site-footer">
+        © קסם הקשב · משה מדינה
+    </footer>
+
+</div>
+
+<!-- ══ STICKY BUTTON ══ -->
+<div class="sticky-btn-wrapper" id="stickyBar">
+    <div class="sticky-inner">
+        <span class="sticky-price">55 ש"ח</span>
+        <button class="btn sticky-btn" onclick="openModal()">להזמנת הספר עכשיו</button>
     </div>
+</div>
 
-    <!-- סקריפט להפעלת האקורדיון של השאלות הנפוצות -->
-    <script>
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentNode;
-                const answer = question.nextElementSibling;
-                
-                // סגירת כל האחרים
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.faq-answer').style.maxHeight = null;
-                    }
-                });
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="orderModal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
 
-                // פתיחה או סגירה של הנוכחי
-                item.classList.toggle('active');
-                if (item.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                } else {
-                    answer.style.maxHeight = null;
+        <div class="modal-success" id="modalSuccess">
+            <div class="success-icon">🎉</div>
+            <h2 class="modal-title">ההזמנה התקבלה!</h2>
+            <p>תוך זמן קצר תקבל לינק לתשלום <span id="successChannel"></span>.<br>תודה שבחרת בקסם וקשב ✨</p>
+            <button class="btn" onclick="closeModal()" style="margin-top: 20px; font-size: 1rem; padding: 12px 24px;">סגור</button>
+        </div>
+
+        <div class="modal-form" id="modalForm">
+            <h2 class="modal-title">השלמת ההזמנה</h2>
+            <p class="modal-sub">כמה פרטים קטנים ואנחנו שולחים לך לינק לתשלום</p>
+
+            <!-- כמות -->
+            <div class="form-group">
+                <label>כמה ספרים? <span>(55 ש"ח לספר)</span></label>
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    <span class="qty-display" id="qtyDisplay">1</span>
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+            </div>
+
+            <!-- משלוח -->
+            <div class="form-group">
+                <label>איך להגיע אליך?</label>
+                <div class="pill-group">
+                    <input type="radio" name="delivery" id="d-mail" value="mail" class="pill-option" onchange="updateDelivery()">
+                    <label for="d-mail" class="pill-label">📦 משלוח לבית (+15 ש"ח)</label>
+                    <input type="radio" name="delivery" id="d-pickup" value="pickup" class="pill-option" onchange="updateDelivery()">
+                    <label for="d-pickup" class="pill-label">📍 איסוף מבית שמש (חינם)</label>
+                </div>
+                <div class="delivery-sub" id="deliverySub" style="display:none;"></div>
+            </div>
+
+            <!-- שם -->
+            <div class="form-group">
+                <label>שם מלא</label>
+                <input type="text" class="form-input" id="fullName" placeholder="ישראל ישראלי" oninput="updateSendBtn()">
+            </div>
+
+            <!-- ערוץ -->
+            <div class="form-group">
+                <label>איך לשלוח לך את לינק התשלום?</label>
+                <div class="channel-group">
+                    <input type="radio" name="channel" id="ch-wa" value="whatsapp" class="channel-option" onchange="updateContactField()">
+                    <label for="ch-wa" class="channel-label"><span class="channel-icon">💬</span> וואצאפ</label>
+                    <input type="radio" name="channel" id="ch-email" value="email" class="channel-option" onchange="updateContactField()">
+                    <label for="ch-email" class="channel-label"><span class="channel-icon">✉️</span> מייל</label>
+                    <input type="radio" name="channel" id="ch-sms" value="sms" class="channel-option" onchange="updateContactField()">
+                    <label for="ch-sms" class="channel-label"><span class="channel-icon">📱</span> SMS</label>
+                </div>
+            </div>
+
+            <!-- שדה קשר דינמי -->
+            <div class="form-group" id="contactFieldGroup" style="display:none;">
+                <label id="contactLabel">מספר טלפון</label>
+                <input type="text" class="form-input" id="contactValue" placeholder="" oninput="updateSendBtn()">
+            </div>
+
+            <!-- סיכום -->
+            <div class="order-summary">
+                <div class="summary-row"><span>ספרים</span><span id="sumBooks">55 ש"ח</span></div>
+                <div class="summary-row" id="sumDeliveryRow" style="display:none;"><span>משלוח</span><span>15 ש"ח</span></div>
+                <div class="summary-row total"><span>סה"כ לתשלום</span><span id="sumTotal">55 ש"ח</span></div>
+            </div>
+
+            <button class="btn-send" id="sendBtn" disabled onclick="submitOrder()">שלח לי לינק לתשלום 🚀</button>
+            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px;">* אין חיוב עכשיו. הלינק ישלח אליך בהקדם.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let qty = 1;
+    const BOOK_PRICE = 55;
+    const DELIVERY_PRICE = 15;
+
+    // Progress bar
+    window.addEventListener('scroll', () => {
+        const doc = document.documentElement;
+        const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Modal
+    function openModal() {
+        document.getElementById('orderModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('orderModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e) {
+        if (e.target === document.getElementById('orderModal')) closeModal();
+    }
+
+    // Qty
+    function changeQty(delta) {
+        qty = Math.max(1, qty + delta);
+        document.getElementById('qtyDisplay').textContent = qty;
+        updateSummary();
+    }
+
+    // Delivery
+    function updateDelivery() {
+        const val = document.querySelector('input[name="delivery"]:checked')?.value;
+        const sub = document.getElementById('deliverySub');
+        if (val === 'mail') {
+            sub.style.display = 'block';
+            sub.innerHTML = '<strong>משלוח בדואר ישראל</strong> — זמן אספקה עד 14 ימי עסקים. יישלח מספר מעקב.';
+            document.getElementById('sumDeliveryRow').style.display = 'flex';
+        } else if (val === 'pickup') {
+            sub.style.display = 'block';
+            sub.innerHTML = '<strong>איסוף מבית שמש</strong> — בתיאום מראש לאחר אישור ההזמנה.';
+            document.getElementById('sumDeliveryRow').style.display = 'none';
+        }
+        updateSummary();
+        updateSendBtn();
+    }
+
+    function updateSummary() {
+        const delivery = document.querySelector('input[name="delivery"]:checked')?.value;
+        const books = qty * BOOK_PRICE;
+        const ship = delivery === 'mail' ? DELIVERY_PRICE : 0;
+        document.getElementById('sumBooks').textContent = books + ' ש"ח';
+        document.getElementById('sumTotal').textContent = (books + ship) + ' ש"ח';
+    }
+
+    // Channel
+    function updateContactField() {
+        const ch = document.querySelector('input[name="channel"]:checked')?.value;
+        const group = document.getElementById('contactFieldGroup');
+        const label = document.getElementById('contactLabel');
+        const input = document.getElementById('contactValue');
+        if (!ch) { group.style.display = 'none'; return; }
+        group.style.display = 'block';
+        if (ch === 'email') {
+            label.textContent = 'כתובת מייל';
+            input.placeholder = 'your@email.com';
+            input.type = 'email';
+        } else {
+            label.textContent = 'מספר טלפון';
+            input.placeholder = '05X-XXXXXXX';
+            input.type = 'tel';
+        }
+        input.value = '';
+        updateSendBtn();
+    }
+
+    function updateSendBtn() {
+        const name = document.getElementById('fullName').value.trim();
+        const delivery = document.querySelector('input[name="delivery"]:checked');
+        const channel = document.querySelector('input[name="channel"]:checked');
+        const contact = document.getElementById('contactValue').value.trim();
+        document.getElementById('sendBtn').disabled = !(name && delivery && channel && contact);
+    }
+
+    function submitOrder() {
+        const ch = document.querySelector('input[name="channel"]:checked').value;
+        const name = document.getElementById('fullName').value.trim();
+        const contact = document.getElementById('contactValue').value.trim();
+        const delivery = document.querySelector('input[name="delivery"]:checked').value;
+        const deliveryText = delivery === 'mail' ? 'משלוח לבית' : 'איסוף מבית שמש';
+        const chText = ch === 'whatsapp' ? 'וואצאפ' : ch === 'email' ? 'מייל' : 'SMS';
+        const total = qty * BOOK_PRICE + (delivery === 'mail' ? DELIVERY_PRICE : 0);
+
+        const msg = `הזמנה חדשה מדף המכירה 📚\n\nשם: ${name}\nכמות ספרים: ${qty}\nמשלוח: ${deliveryText}\nסה"כ: ${total} ש"ח\nשלח לינק לתשלום ב${chText}: ${contact}`;
+        const waUrl = `https://wa.me/972542347839?text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, '_blank');
+
+        const chNames = { whatsapp: 'לוואצאפ שלך', email: 'למייל שלך', sms: 'ב-SMS' };
+        document.getElementById('successChannel').textContent = chNames[ch] || '';
+        document.getElementById('modalForm').classList.add('hidden');
+        document.getElementById('modalSuccess').classList.add('show');
+    }
+
+    // FAQ
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentNode;
+            const answer = q.nextElementSibling;
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('active');
+                    other.querySelector('.faq-answer').style.maxHeight = null;
                 }
             });
+            item.classList.toggle('active');
+            answer.style.maxHeight = item.classList.contains('active') ? answer.scrollHeight + 'px' : null;
         });
-    </script>
+    });
+</script>
 </body>
 </html>
