@@ -645,7 +645,7 @@
         <div class="modal-success" id="modalSuccess">
             <div class="success-icon">🎉</div>
             <h2 class="modal-title">ההזמנה התקבלה!</h2>
-            <p>תוך זמן קצר תקבל לינק לתשלום <span id="successChannel"></span>.<br>תודה שבחרת בקסם וקשב ✨</p>
+            <p>ההזמנה שלך בדרך אלינו דרך הוואטסאפ 🎉<br>ניצור איתך קשר בהקדם עם לינק לתשלום.</p>
             <button class="btn" onclick="closeModal()" style="margin-top: 20px; font-size: 1rem; padding: 12px 24px;">סגור</button>
         </div>
 
@@ -681,23 +681,10 @@
                 <input type="text" class="form-input" id="fullName" placeholder="ישראל ישראלי" oninput="updateSendBtn()">
             </div>
 
-            <!-- ערוץ -->
-            <div class="form-group">
-                <label>איך לשלוח לך את לינק התשלום?</label>
-                <div class="channel-group">
-                    <input type="radio" name="channel" id="ch-wa" value="whatsapp" class="channel-option" onchange="updateContactField()">
-                    <label for="ch-wa" class="channel-label"><span class="channel-icon">💬</span> וואצאפ</label>
-                    <input type="radio" name="channel" id="ch-email" value="email" class="channel-option" onchange="updateContactField()">
-                    <label for="ch-email" class="channel-label"><span class="channel-icon">✉️</span> מייל</label>
-                    <input type="radio" name="channel" id="ch-sms" value="sms" class="channel-option" onchange="updateContactField()">
-                    <label for="ch-sms" class="channel-label"><span class="channel-icon">📱</span> SMS</label>
-                </div>
-            </div>
-
-            <!-- שדה קשר דינמי -->
-            <div class="form-group" id="contactFieldGroup" style="display:none;">
-                <label id="contactLabel">מספר טלפון</label>
-                <input type="text" class="form-input" id="contactValue" placeholder="" oninput="updateSendBtn()">
+            <!-- כתובת למשלוח - מופיעה רק כשבוחרים משלוח -->
+            <div class="form-group" id="addressFieldGroup" style="display:none;">
+                <label>כתובת למשלוח <span>(רחוב, מספר, עיר)</span></label>
+                <input type="text" class="form-input" id="addressValue" placeholder="רחוב הרצל 5, תל אביב" oninput="updateSendBtn()">
             </div>
 
             <!-- סיכום -->
@@ -707,8 +694,8 @@
                 <div class="summary-row total"><span>סה"כ לתשלום</span><span id="sumTotal">55 ש"ח</span></div>
             </div>
 
-            <button class="btn-send" id="sendBtn" disabled onclick="submitOrder()">שלח לי לינק לתשלום 🚀</button>
-            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px;">* אין חיוב עכשיו. הלינק ישלח אליך בהקדם.</p>
+            <button class="btn-send" id="sendBtn" disabled onclick="submitOrder()">המשך לוואטסאפ לשליחת ההזמנה 💬</button>
+            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px;">* תועבר לוואטסאפ עם פרטי ההזמנה מוכנים. אין חיוב עכשיו.</p>
         </div>
     </div>
 </div>
@@ -759,10 +746,12 @@
             sub.style.display = 'block';
             sub.innerHTML = '<strong>משלוח בדואר ישראל</strong> — זמן אספקה עד 14 ימי עסקים. יישלח מספר מעקב.';
             document.getElementById('sumDeliveryRow').style.display = 'flex';
+            document.getElementById('addressFieldGroup').style.display = 'block';
         } else if (val === 'pickup') {
             sub.style.display = 'block';
             sub.innerHTML = '<strong>איסוף מבית שמש</strong> — בתיאום מראש לאחר אישור ההזמנה.';
             document.getElementById('sumDeliveryRow').style.display = 'none';
+            document.getElementById('addressFieldGroup').style.display = 'none';
         }
         updateSummary();
         updateSendBtn();
@@ -776,50 +765,27 @@
         document.getElementById('sumTotal').textContent = (books + ship) + ' ש"ח';
     }
 
-    // Channel
-    function updateContactField() {
-        const ch = document.querySelector('input[name="channel"]:checked')?.value;
-        const group = document.getElementById('contactFieldGroup');
-        const label = document.getElementById('contactLabel');
-        const input = document.getElementById('contactValue');
-        if (!ch) { group.style.display = 'none'; return; }
-        group.style.display = 'block';
-        if (ch === 'email') {
-            label.textContent = 'כתובת מייל';
-            input.placeholder = 'your@email.com';
-            input.type = 'email';
-        } else {
-            label.textContent = 'מספר טלפון';
-            input.placeholder = '05X-XXXXXXX';
-            input.type = 'tel';
-        }
-        input.value = '';
-        updateSendBtn();
-    }
-
     function updateSendBtn() {
         const name = document.getElementById('fullName').value.trim();
         const delivery = document.querySelector('input[name="delivery"]:checked');
-        const channel = document.querySelector('input[name="channel"]:checked');
-        const contact = document.getElementById('contactValue').value.trim();
-        document.getElementById('sendBtn').disabled = !(name && delivery && channel && contact);
+        const addressOk = delivery?.value !== 'mail' || document.getElementById('addressValue').value.trim();
+        document.getElementById('sendBtn').disabled = !(name && delivery && addressOk);
     }
 
     function submitOrder() {
-        const ch = document.querySelector('input[name="channel"]:checked').value;
         const name = document.getElementById('fullName').value.trim();
-        const contact = document.getElementById('contactValue').value.trim();
         const delivery = document.querySelector('input[name="delivery"]:checked').value;
         const deliveryText = delivery === 'mail' ? 'משלוח לבית' : 'איסוף מבית שמש';
-        const chText = ch === 'whatsapp' ? 'וואצאפ' : ch === 'email' ? 'מייל' : 'SMS';
+        const address = delivery === 'mail' ? document.getElementById('addressValue').value.trim() : '';
         const total = qty * BOOK_PRICE + (delivery === 'mail' ? DELIVERY_PRICE : 0);
 
-        const msg = `הזמנה חדשה מדף המכירה 📚\n\nשם: ${name}\nכמות ספרים: ${qty}\nמשלוח: ${deliveryText}\nסה"כ: ${total} ש"ח\nשלח לינק לתשלום ב${chText}: ${contact}`;
+        let msg = `הזמנה חדשה מדף המכירה 📚\n\nשם: ${name}\nכמות ספרים: ${qty}\nמשלוח: ${deliveryText}`;
+        if (address) msg += `\nכתובת: ${address}`;
+        msg += `\nסה"כ: ${total} ש"ח`;
+
         const waUrl = `https://wa.me/972542347839?text=${encodeURIComponent(msg)}`;
         window.open(waUrl, '_blank');
 
-        const chNames = { whatsapp: 'לוואצאפ שלך', email: 'למייל שלך', sms: 'ב-SMS' };
-        document.getElementById('successChannel').textContent = chNames[ch] || '';
         document.getElementById('modalForm').classList.add('hidden');
         document.getElementById('modalSuccess').classList.add('show');
     }
