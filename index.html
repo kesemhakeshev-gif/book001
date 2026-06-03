@@ -293,20 +293,6 @@
         .modal-title { font-size: 1.5rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
         .modal-sub { font-size: 0.95rem; color: var(--text-light); margin-bottom: 24px; }
 
-        /* Step indicator */
-        .steps-row {
-            display: flex; align-items: center; gap: 6px;
-            margin-bottom: 24px; direction: ltr;
-        }
-        .step-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: #E5E7EB; transition: background 0.3s;
-            flex-shrink: 0;
-        }
-        .step-dot.done { background: var(--success); }
-        .step-dot.active { background: var(--primary); width: 24px; border-radius: 5px; }
-        .step-line { flex: 1; height: 2px; background: #E5E7EB; }
-
         .form-group { margin-bottom: 22px; }
         .form-group label {
             display: block; font-weight: 700; margin-bottom: 9px;
@@ -351,19 +337,6 @@
         }
         .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
 
-        /* Channel */
-        .channel-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        .channel-option { display: none; }
-        .channel-label {
-            display: flex; align-items: center; gap: 7px;
-            padding: 11px 16px; border-radius: 12px;
-            border: 2px solid #E5E7EB; cursor: pointer;
-            font-size: 0.93rem; font-weight: 700; color: var(--text-light);
-            transition: all 0.2s; background: #fff;
-        }
-        .channel-option:checked + .channel-label { border-color: var(--primary); background: #EEF2FF; color: var(--primary); }
-        .channel-icon { font-size: 1.15rem; }
-
         /* Summary */
         .order-summary {
             background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
@@ -377,7 +350,7 @@
 
         .btn-send {
             width: 100%; padding: 17px; background: var(--accent); color: #fff;
-            border: none; border-radius: 50px; font-size: 1.2rem; font-weight: 700;
+            border: none; border-radius: 50px; font-size: 1.15rem; font-weight: 700;
             cursor: pointer; transition: all 0.25s; font-family: 'Heebo', sans-serif;
             box-shadow: 0 8px 20px rgba(245,158,11,0.35);
         }
@@ -410,17 +383,14 @@
 </head>
 <body>
 
-<!-- Progress bar -->
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
 <div class="container">
 
-    <!-- ══ HERO ══ -->
     <div class="hero-wrapper reveal">
         <h1>קסם וקשב</h1>
         <div class="subtitle">ספר ילדים קסום לילדים שאולי לא תמיד מבינים אותם.</div>
 
-        <!-- תמונת הספר — העלה קובץ בשם book-cover.jpg לגיטהאב באותה תיקייה -->
         <div class="book-image-wrapper">
             <img src="book-cover.jpg" alt="עטיפת הספר קסם וקשב"
                  onerror="this.style.display='none'; document.getElementById('bookPlaceholder').style.display='flex';">
@@ -439,7 +409,6 @@
             מתאים לגילאי 10–16, להורים, למחנכים, למטפלים — ולכל מבוגר שפעם היה ילד שלא תמיד הבינו אותו.
         </p>
 
-        <!-- Stats -->
         <div class="stats-row" style="margin-top: 28px;">
             <div class="stat-box">
                 <span class="stat-num">1,000+</span>
@@ -456,7 +425,6 @@
         </div>
     </div>
 
-    <!-- ══ PAIN ══ -->
     <section class="card card-highlight reveal">
         <div class="poetic-text">
             יש ילדים שגדלים בתחושה שמשהו איתם לא בסדר.
@@ -479,7 +447,6 @@
         </h3>
     </section>
 
-    <!-- ══ ABOUT ══ -->
     <section class="card reveal">
         <h2>על מה הספר?</h2>
         <p><strong>"קסם וקשב"</strong> הוא סיפור על ילד בשם קסם, ילד חכם, רגיש ומלא דמיון, שמתמודד עם קשיים שילדים רבים מכירים מקרוב: לימודים, חברה, הערות, תחושת כישלון, בלבול ורצון להצליח שמתנגש בקושי לבצע.</p>
@@ -487,7 +454,6 @@
         <p style="font-weight: bold; color: var(--primary); margin-bottom: 0;">הספר לוקח את הילד למסע בו הוא מכיר את הקשב שלו טוב יותר, ואולי בעצם — המסע שיגרום לו להכיר את עצמו ולראות עצמו בעיניים טובות יותר.</p>
     </section>
 
-    <!-- ══ FOR WHOM ══ -->
     <section class="card reveal">
         <h2>למי הספר מתאים?</h2>
         <h3>לילדים ונוער בגילאי 10-16</h3>
@@ -500,7 +466,6 @@
         <p style="margin-bottom: 0;">הרבה מבוגרים עם קשב מגלים את עצמם רק בגיל מאוחר. הם קוראים תכנים על קשב ואומרים: "רגע, עכשיו אני מבין את הילדות שלי." כי אמנם הספר נכתב לילדים, אבל הוא בהחלט נוגע גם במבוגר שפעם היה ילד שלא תמיד הבינו אותו.</p>
     </section>
 
-    <!-- ══ WHY STORY ══ -->
     <section class="card reveal">
         <h2>למה דווקא דרך סיפור?</h2>
         <p>כי ילדים (ואולי גם מבוגרים) לא תמיד רוצים עוד הסבר, ולא תמיד מסוגלים לשמוע עוד עצה. אבל סיפור, הם יכולים להרגיש. דרך הסיפור, הילד יכול לפגוש את הקשיים שלו בלי להרגיש שמאשימים אותו. הוא יכול להבין שהוא לא לבד, ולהתחיל לדבר על עצמו בשפה חדשה.</p>
@@ -518,7 +483,6 @@
         </p>
     </section>
 
-    <!-- ══ WHY I WROTE ══ -->
     <section class="card reveal">
         <h2>למה כתבתי את הספר?</h2>
         <p>האמת היא שכתבתי את הספר ממקום מאד אישי, מעין מסר שרציתי להגיד לילד ההוא שאני הייתי פעם.</p>
@@ -526,7 +490,6 @@
         <p style="margin-bottom: 0;">רציתי לכתוב ספר שילד יוכל לקרוא היום, ולהתחבר לעצמו. לפני שהביקורת הופכת להיות הקול הפנימי שלו. ספר שיגיד לו: <strong>אתה לא בעייתי. יש בך קסם. ועכשיו בוא נלמד להכיר אותו ביחד.</strong></p>
     </section>
 
-    <!-- ══ TESTIMONIALS ══ -->
     <section class="card reveal">
         <h2>מה אנשים כתבו על התכנים של קסם הקשב:</h2>
 
@@ -555,7 +518,6 @@
         <p style="margin-bottom: 0;">הספר פחות מתאים למי שמחפש ספר הדרכה מקצועי להורים, עם טבלאות, תרגילים והנחיות מסודרות. זה לא מדריך טכני. זה סיפור. הכוח שלו הוא רגשי, חווייתי וסיפורי.</p>
     </section>
 
-    <!-- ══ PURCHASE ══ -->
     <section class="card card-highlight reveal" id="purchase">
         <h2>מה מקבלים?</h2>
         <p><strong>ספר מודפס בכריכה רכה: קסם וקשב</strong><br>
@@ -569,7 +531,7 @@
             <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 0;">מחיר השקה מיוחד לרוכשים דרך העמוד</p>
 
             <p class="pre-cta" style="margin-top: 18px;">
-                תהליך פשוט — בוחרים כמה ספרים, איך להגיע אליך, ואנחנו שולחים לינק לתשלום ישר למקום הנוח לך.
+                תהליך פשוט — בוחרים כמות ספרים ומשלוח, ואנחנו עוברים לווצאפ לשלוח את לינק התשלום ישירות אליך.
             </p>
             <button class="btn btn-pulse" onclick="openModal()">אני רוצה להזמין את הספר 📚</button>
 
@@ -588,7 +550,6 @@
         <p style="font-size: 0.88rem; color: var(--text-light); text-align: center; margin-top: 12px; margin-bottom: 0;">* לאחר ההזמנה תישלח הודעה עם פרטי האיסוף או המשלוח.</p>
     </section>
 
-    <!-- ══ FAQ ══ -->
     <section class="card reveal">
         <h2>שאלות נפוצות</h2>
         <div class="faq-item">
@@ -609,7 +570,6 @@
         </div>
     </section>
 
-    <!-- ══ FINAL CTA ══ -->
     <section class="card card-final reveal" style="text-align: center; padding: 40px 28px;">
         <div class="poetic-text" style="color: #C7D2FE; padding: 0 0 24px;">
             יש ילדים ששומעים כל כך הרבה מה קשה בהם,<br>
@@ -620,7 +580,7 @@
         <button class="btn btn-pulse" onclick="openModal()" style="margin: 0 auto 16px;">
             להזמנת הספר עכשיו 📚
         </button>
-        <p style="font-size: 0.9rem; color: #A5B4FC; margin-bottom: 0;">55 ש"ח בלבד · משלוח עד הבית · לינק לתשלום בוואצאפ / מייל / SMS</p>
+        <p style="font-size: 0.9rem; color: #A5B4FC; margin-bottom: 0;">55 ש"ח בלבד · משלוח עד הבית · שירות אישי בווצאפ</p>
     </section>
 
     <footer class="site-footer">
@@ -629,7 +589,6 @@
 
 </div>
 
-<!-- ══ STICKY BUTTON ══ -->
 <div class="sticky-btn-wrapper" id="stickyBar">
     <div class="sticky-inner">
         <span class="sticky-price">55 ש"ח</span>
@@ -637,23 +596,21 @@
     </div>
 </div>
 
-<!-- ══ MODAL ══ -->
 <div class="modal-overlay" id="orderModal" onclick="handleOverlayClick(event)">
     <div class="modal">
         <button class="modal-close" onclick="closeModal()">✕</button>
 
         <div class="modal-success" id="modalSuccess">
             <div class="success-icon">🎉</div>
-            <h2 class="modal-title">ההזמנה התקבלה!</h2>
-            <p>ההזמנה שלך בדרך אלינו דרך הוואטסאפ 🎉<br>ניצור איתך קשר בהקדם עם לינק לתשלום.</p>
+            <h2 class="modal-title">הזמנה מוכנה!</h2>
+            <p>הועברת לווצאפ להשלמת תהליך הרכישה.<br>תודה שבחרת בקסם וקשב ✨</p>
             <button class="btn" onclick="closeModal()" style="margin-top: 20px; font-size: 1rem; padding: 12px 24px;">סגור</button>
         </div>
 
         <div class="modal-form" id="modalForm">
             <h2 class="modal-title">השלמת ההזמנה</h2>
-            <p class="modal-sub">כמה פרטים קטנים ואנחנו שולחים לך לינק לתשלום</p>
+            <p class="modal-sub">כמה פרטים קטנים ונעבור לווצאפ לשלוח לך לינק לתשלום</p>
 
-            <!-- כמות -->
             <div class="form-group">
                 <label>כמה ספרים? <span>(55 ש"ח לספר)</span></label>
                 <div class="qty-selector">
@@ -663,7 +620,6 @@
                 </div>
             </div>
 
-            <!-- משלוח -->
             <div class="form-group">
                 <label>איך להגיע אליך?</label>
                 <div class="pill-group">
@@ -675,27 +631,19 @@
                 <div class="delivery-sub" id="deliverySub" style="display:none;"></div>
             </div>
 
-            <!-- שם -->
             <div class="form-group">
                 <label>שם מלא</label>
                 <input type="text" class="form-input" id="fullName" placeholder="ישראל ישראלי" oninput="updateSendBtn()">
             </div>
 
-            <!-- כתובת למשלוח - מופיעה רק כשבוחרים משלוח -->
-            <div class="form-group" id="addressFieldGroup" style="display:none;">
-                <label>כתובת למשלוח <span>(רחוב, מספר, עיר)</span></label>
-                <input type="text" class="form-input" id="addressValue" placeholder="רחוב הרצל 5, תל אביב" oninput="updateSendBtn()">
-            </div>
-
-            <!-- סיכום -->
             <div class="order-summary">
                 <div class="summary-row"><span>ספרים</span><span id="sumBooks">55 ש"ח</span></div>
                 <div class="summary-row" id="sumDeliveryRow" style="display:none;"><span>משלוח</span><span>15 ש"ח</span></div>
                 <div class="summary-row total"><span>סה"כ לתשלום</span><span id="sumTotal">55 ש"ח</span></div>
             </div>
 
-            <button class="btn-send" id="sendBtn" disabled onclick="submitOrder()">המשך לוואטסאפ לשליחת ההזמנה 💬</button>
-            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px;">* תועבר לוואטסאפ עם פרטי ההזמנה מוכנים. אין חיוב עכשיו.</p>
+            <button class="btn-send" id="sendBtn" disabled onclick="submitOrder()">המשך לווצאפ לשליחת ההזמנה 🚀</button>
+            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; margin-top: 10px;">* אין חיוב עכשיו. הלינק ישלח אליך בהקדם.</p>
         </div>
     </div>
 </div>
@@ -746,12 +694,10 @@
             sub.style.display = 'block';
             sub.innerHTML = '<strong>משלוח בדואר ישראל</strong> — זמן אספקה עד 14 ימי עסקים. יישלח מספר מעקב.';
             document.getElementById('sumDeliveryRow').style.display = 'flex';
-            document.getElementById('addressFieldGroup').style.display = 'block';
         } else if (val === 'pickup') {
             sub.style.display = 'block';
             sub.innerHTML = '<strong>איסוף מבית שמש</strong> — בתיאום מראש לאחר אישור ההזמנה.';
             document.getElementById('sumDeliveryRow').style.display = 'none';
-            document.getElementById('addressFieldGroup').style.display = 'none';
         }
         updateSummary();
         updateSendBtn();
@@ -768,21 +714,16 @@
     function updateSendBtn() {
         const name = document.getElementById('fullName').value.trim();
         const delivery = document.querySelector('input[name="delivery"]:checked');
-        const addressOk = delivery?.value !== 'mail' || document.getElementById('addressValue').value.trim();
-        document.getElementById('sendBtn').disabled = !(name && delivery && addressOk);
+        document.getElementById('sendBtn').disabled = !(name && delivery);
     }
 
     function submitOrder() {
         const name = document.getElementById('fullName').value.trim();
         const delivery = document.querySelector('input[name="delivery"]:checked').value;
         const deliveryText = delivery === 'mail' ? 'משלוח לבית' : 'איסוף מבית שמש';
-        const address = delivery === 'mail' ? document.getElementById('addressValue').value.trim() : '';
         const total = qty * BOOK_PRICE + (delivery === 'mail' ? DELIVERY_PRICE : 0);
 
-        let msg = `הזמנה חדשה מדף המכירה 📚\n\nשם: ${name}\nכמות ספרים: ${qty}\nמשלוח: ${deliveryText}`;
-        if (address) msg += `\nכתובת: ${address}`;
-        msg += `\nסה"כ: ${total} ש"ח`;
-
+        const msg = `היי משה! אשמח להזמין את הספר "קסם וקשב" 📚\n\nשם: ${name}\nכמות ספרים: ${qty}\nשיטת קבלה: ${deliveryText}\nסה"כ לתשלום: ${total} ש"ח\n\nאשמח לקבל לינק לתשלום!`;
         const waUrl = `https://wa.me/972542347839?text=${encodeURIComponent(msg)}`;
         window.open(waUrl, '_blank');
 
